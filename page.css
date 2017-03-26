@@ -14,3 +14,7 @@ body {
     background-color: #fff;
     border: 1px solid #ccc;
 }
+
+h1 {
+    font-weight: bold;
+}
