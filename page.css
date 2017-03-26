@@ -3,6 +3,7 @@ body {
     padding: 0;
     font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
     background-color: #eee;
+    text-align: center;
 }
 
 .container {
@@ -10,4 +11,6 @@ body {
     height: 400px;
     margin: 50px auto;
     margin: 10vh auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
 }
