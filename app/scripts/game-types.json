@@ -1,0 +1,26 @@
+[
+    {
+        "image": "./images/monopoly.png",
+        "text": "Classic Monopoly (post-2008)"
+    },
+    {
+        "image": "./images/monopoly-old.png",
+        "text": "Classic Monopoly (pre-2008)"
+    },
+    {
+        "image": "./images/here-and-now.jpg",
+        "text": "Monopoly: Here & Now"
+    },
+    {
+        "image": "./images/collector.jpg",
+        "text": "Collectors Editions"
+    },
+    {
+        "image": "./images/other-monopoly.jpg",
+        "text": "Other non-collector boards"
+    },
+    {
+        "image": "./images/other-game.png",
+        "text": "Custom"
+    }
+]

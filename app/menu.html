@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Setup</title>
+        <link rel="stylesheet" type="text/css" href="style/menu.css" />
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    </head>
+    <body>
+        <div class="body-container" ng-app="menuApp" ng-controller="menuController">
+            <h1>Choose board:</h1>
+            <div class="selection-array">
+                <div class="option-box" ng-repeat="opt in allOptions">
+                    <div class="img-box">
+                        <img src="{{opt.image}}" />>
+                    </div>
+                    <h2>{{ opt.text}}</h2>
+                </div>
+                <div class="option-box">
+                    <div class="img-box">
+                        <img src="./images/monopoly.png" />
+                    </div>
+                    <h2>Classic Monopoly (post-2008)</h2>
+                </div>
+                <div class="option-box">
+                    <div class="img-box">
+                        <img src="./images/monopoly-old.png" />
+                    </div>
+                    <h2>Classic Monopoly (pre-2008)</h2>
+                </div>
+                <div class="option-box">
+                    <div class="img-box">
+                        <img src="./images/here-and-now.jpg" />
+                    </div>
+                    <h2>Monopoly: Here & Now</h2>
+                </div>
+                <div class="option-box">
+                    <div class="img-box">
+                        <img src="./images/collector.jpg" />
+                    </div>
+                    <h2>Collectors Editions</h2>
+                </div>
+                <div class="option-box">
+                    <div class="img-box">
+                        <img src="./images/other-monopoly.jpg" />
+                    </div>
+                    <h2>Other non-collector boards</h2>
+                </div>
+                <div class="option-box">
+                    <div class="img-box">
+                        <img src="./images/other-game.png" />
+                    </div>
+                    <h2>Custom</h2>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="scripts/menu.js"></script>
+</html>
