@@ -1,6 +1,6 @@
 [
     {
-        "bgColor": "#FF00FF",
+        "bgColor": "#600060",
         "properties": [
             {
                 "name": "Mediterranean Avenue",
@@ -12,7 +12,7 @@
             }
         ]
     }, {
-        "bgColor": "#8888FF",
+        "bgColor": "#add8e6",
         "properties":[
             {
                 "name": "Oriental Avenue",
