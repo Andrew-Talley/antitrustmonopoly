@@ -1,0 +1,43 @@
+[
+    {
+        "bgColor": "purple",
+        "properties": [
+            {
+                "name": "Mediterranean Avenue",
+                "value": 60
+            },
+            {
+                "name": "Baltic Avenue",
+                "value": 60
+            }
+        ]
+    }, {
+        "bgColor": "rgb(125,125,255)",
+        "properties":[
+            {
+                "name": "Oriental Avenue",
+                "value": 100
+            }, {
+                "name": "Vermont Avenue",
+                "value": 100
+            }, {
+                "name": "Connecticut Avenue",
+                "value": 120
+            }
+        ]
+    }, {
+        "bgColor": "rgb(200,0,200)",
+        "properties":[
+            {
+                "name": "St. Charles Place",
+                "value": 140
+            }, {
+                "name": "States Avenue",
+                "value": 140
+            }, {
+                "name": "Virginia Avenue",
+                "value": 160
+            }
+        ]
+    }
+]
