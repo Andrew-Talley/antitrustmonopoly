@@ -22,7 +22,10 @@ app.controller('menuController', function ($scope, $http) {
             ]
         })
     }
-    $scope.leftClicked = function (i) {
-        $(i.target).parent().children('input').click();
+    $scope.leftClicked = function (event) {
+        $(event.target).parent().children('input').click();
+    }
+    $scope.menuOptionClick = function (event, option) {
+        if (option.text == 'Monopoly (post-2008)')
     }
 });

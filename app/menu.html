@@ -12,7 +12,7 @@
             <div class="board-options">
                 <h1>Choose board:</h1>
                 <div class="selection-array">
-                    <div class="option-box" ng-repeat="opt in allOptions">
+                    <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in allOptions">
                         <div class="img-box">
                             <img ng-src="{{ opt.image }}" />
                         </div>
@@ -23,7 +23,7 @@
             <div class="final-setup">
                 <h1>Look over everything</h1>
                 <div class="property-group" ng-repeat="group in groups">
-                    <div class="left" style="background-color:{{group.bgColor}}" ng-click="leftClicked($event)">
+                    <div class="left" ng-style="background-color:{{group.bgColor}}" ng-click="leftClicked($event)">
                         <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
                     </div>
                     <div class="all-properties">

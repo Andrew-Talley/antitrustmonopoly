@@ -1,0 +1,110 @@
+[
+    {
+        "bgColor": "#965432",
+        "properties": [
+            {
+                "name": "Mediterranean Avenue",
+                "value": 60
+            },
+            {
+                "name": "Baltic Avenue",
+                "value": 60
+            }
+        ]
+    }, {
+        "bgColor": "#834126",
+        "properties":[
+            {
+                "name": "Oriental Avenue",
+                "value": 100
+            }, {
+                "name": "Vermont Avenue",
+                "value": 100
+            }, {
+                "name": "Connecticut Avenue",
+                "value": 120
+            }
+        ]
+    }, {
+        "bgColor": "#834126",
+        "properties":[
+            {
+                "name": "St. Charles Place",
+                "value": 140
+            }, {
+                "name": "States Avenue",
+                "value": 140
+            }, {
+                "name": "Virginia Avenue",
+                "value": 160
+            }
+        ]
+    }, {
+        "bgColor": "#99d8fa",
+        "properties":[
+            {
+                "name": "St. James Place",
+                "value": 180
+            }, {
+                "name": "States Avenue",
+                "value": 180
+            }, {
+                "name": "New York Avenue",
+                "value": 200
+            }
+        ]
+    }, {
+        "bgColor": "#d01685",
+        "properties":[
+            {
+                "name": "Kentucky Avenue",
+                "value": 220
+            }, {
+                "name": "Indiana Avenue",
+                "value": 220
+            }, {
+                "name": "Illinois Avenue",
+                "value": 240
+            }
+        ]
+    }, {
+        "bgColor": "#f58200",
+        "properties": [
+            {
+                "name": "Atlantic Avenue",
+                "value": 260
+            }, {
+                "name": "Ventnor Avenue",
+                "value": 260
+            }, {
+                "name": "Marvin Gardens",
+                "value": 280
+            }
+        ]
+    }, {
+        "bgColor": "#19a944",
+        "properties": [
+            {
+                "name": "Pacific Avenue",
+                "value": 300
+            }, {
+                "name": "North Carolina Avenue",
+                "value": 300
+            }, {
+                "name": "Pennsylvania Avenue",
+                "value": 320
+            }
+        ]
+    }, {
+        "bgColor": "#005ab0",
+        "properties":[
+            {
+                "name": "Park Place",
+                "value": 350
+            }, {
+                "name": "Boardwalk",
+                "value": 400
+            }
+        ]
+    }
+]
