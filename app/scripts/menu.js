@@ -5,7 +5,8 @@ app.controller('menuController', function ($scope, $http) {
     $http.get('https://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
         $scope.allOptions = response;
     });
-    $http.get('https://www.antitrustmonopoly.com/app/scripts/monopoly-names.json').success(function (response) {
+    $http.get('https://www.antitrustmonopoly.com/app/scripts/monopoly.json').success(function (response) {
+        console.log(response);
         $scope.groups = response;
     });
     $scope.addProp = function (index) {
@@ -26,6 +27,16 @@ app.controller('menuController', function ($scope, $http) {
         $(event.target).parent().children('input').click();
     }
     $scope.menuOptionClick = function (event, option) {
-        if (option.text == 'Monopoly (post-2008)')
+        var url = "";
+        if (option.text == 'Monopoly (post-2008)') {
+            url = "https://www.antitrustmonopoly.com/app/scripts/monopoly.json";
+        } else if (option.text == "Classic Monopoly (pre-2008)") {
+            url = "https://www.antitrustmonopoly.com/app/scripts/classic-monopoly.json";
+        } else {
+
+        }
+        $http.get(url).success(function (response) {
+            $scope.groups = response;
+        });
     }
 });

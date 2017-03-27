@@ -23,7 +23,7 @@
             <div class="final-setup">
                 <h1>Look over everything</h1>
                 <div class="property-group" ng-repeat="group in groups">
-                    <div class="left" ng-style="background-color:{{group.bgColor}}" ng-click="leftClicked($event)">
+                    <div class="left" style="background-color: {{group.bgColor}}" ng-click="leftClicked($event)">
                         <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
                     </div>
                     <div class="all-properties">
@@ -36,7 +36,7 @@
                         </div>
                         <button class="property" ng-click="addProp($index)">Add Property</but>
                     </div>
-                    <input type="color" ng-model="group.bgColor" />
+                    <!--<input type="color" ng-model="group.bgColor" />-->
                 </div>
                 <button class="property-group" ng-click="addPropGroup()">Add Property Group</button>
             </div>
