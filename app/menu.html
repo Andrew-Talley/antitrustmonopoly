@@ -3,9 +3,9 @@
     <head>
         <title>Setup</title>
         <link rel="stylesheet" type="text/css" href="style/menu.css" />
-        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     </head>
     <body>
         <div class="body-container" ng-app="menuApp" ng-controller="menuController">
@@ -14,7 +14,7 @@
                 <div class="selection-array">
                     <div class="option-box" ng-repeat="opt in allOptions">
                         <div class="img-box">
-                            <img src="{{ opt.image }}" />
+                            <img ng-src="{{ opt.image }}" />
                         </div>
                         <h2>{{ opt.text}}</h2>
                     </div>
@@ -23,15 +23,22 @@
             <div class="final-setup">
                 <h1>Look over everything</h1>
                 <div class="property-group" ng-repeat="group in groups">
-                    <input class="left" type="color" value="{{group.bgColor}}"></in>
+                    <div class="left" style="background-color:{{group.bgColor}}" ng-click="leftClicked($event)">
+                        <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
+                    </div>
                     <div class="all-properties">
                         <div class="property" ng-repeat="property in group.properties">
                             <input class="name" ng-model="property.name" />
-                            <input class="value" ng-model="property.value" />
+                            <div class="value-div">
+                                <input class="value" ng-model="property.value" />
+                            </div>
+                            <div class="remove" ng-click="group.properties.splice($index,1)">X</div>
                         </div>
+                        <button class="property" ng-click="addProp($index)">Add Property</but>
                     </div>
+                    <input type="color" ng-model="group.bgColor" />
                 </div>
-                
+                <button class="property-group" ng-click="addPropGroup()">Add Property Group</button>
             </div>
         </div>
     </body>
