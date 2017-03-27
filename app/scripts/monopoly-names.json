@@ -1,6 +1,6 @@
 [
     {
-        "bgColor": "purple",
+        "bgColor": "#FF00FF",
         "properties": [
             {
                 "name": "Mediterranean Avenue",
@@ -12,7 +12,7 @@
             }
         ]
     }, {
-        "bgColor": "rgb(125,125,255)",
+        "bgColor": "#8888FF",
         "properties":[
             {
                 "name": "Oriental Avenue",
@@ -26,7 +26,7 @@
             }
         ]
     }, {
-        "bgColor": "rgb(200,0,200)",
+        "bgColor": "#BB00BB",
         "properties":[
             {
                 "name": "St. Charles Place",
