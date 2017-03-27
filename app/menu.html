@@ -21,9 +21,10 @@
                 </div>
             </div>
             <div class="final-setup">
-                <h1>Look over everything</h1>
+                <h1>Take a final look</h1>
+                <h2></h2>
                 <div class="property-group" ng-repeat="group in groups">
-                    <div class="left" style="background-color: {{group.bgColor}}" ng-click="leftClicked($event)">
+                    <div class="left" ng-style="group.style" ng-click="leftClicked($event)">
                         <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
                     </div>
                     <div class="all-properties">
@@ -39,6 +40,28 @@
                     <!--<input type="color" ng-model="group.bgColor" />-->
                 </div>
                 <button class="property-group" ng-click="addPropGroup()">Add Property Group</button>
+                <h2>Settings</h2>
+                <div class="settings">
+                    <div class="settings-box">
+                        <p>Players</p>
+                        <div class="range-div">
+                            <input type="range" min="2" max="10" class="setting-input" ng-model="settings.players" />
+                            <p>{{ settings.players }}</p>
+                        </div>
+                    </div>
+                    <div class="settings-box">
+                        <p>Accounting Fee</p>
+                        <input class="setting-input" ng-model="settings.accountingFee" />
+                    </div>
+                    <div class="settings-box">
+                        <p>Company Purchase Fee</p>
+                        <input class="settings-input" ng-model="settings.companyPurchase" />
+                    </div>
+                    <div class="settings-box">
+                        <p>Ownership Change Fee</p>
+                        <input class="settings-input" ng-model="settings.ownershipChange" />
+                    </div>
+                </div>
             </div>
         </div>
     </body>

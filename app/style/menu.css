@@ -170,3 +170,20 @@ button.property-group {
 input[type='color'] {
     display: none;
 }
+
+.final-setup h1 {
+    text-align: center;
+}
+
+.settings-box {
+    width: 100%;
+    display: flex;
+}
+
+.settings-box p {
+    flex-grow: 1;
+}
+
+.settings-input {
+    width: 100px;
+}

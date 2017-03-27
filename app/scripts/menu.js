@@ -2,19 +2,21 @@ var app = angular.module('menuApp', []);
 app.controller('menuController', function ($scope, $http) {
     $scope.allOptions = [];
     $scope.groups = [];
+    $scope.settings = {};
     $http.get('https://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
         $scope.allOptions = response;
     });
     $http.get('https://www.antitrustmonopoly.com/app/scripts/monopoly.json').success(function (response) {
         console.log(response);
-        $scope.groups = response;
+        $scope.groups = response.propertyGroups;
+        $scope.settings = response.gameSettings;
     });
     $scope.addProp = function (index) {
         $scope.groups[index].properties.push({ "name": "", "value": 0 });
     }
     $scope.addPropGroup = function () {
         $scope.groups.push({
-            "bgColor": "#FF0000",
+            "background-color": "#FFFFFF",
             "properties": [
                 {
                     "name": "",

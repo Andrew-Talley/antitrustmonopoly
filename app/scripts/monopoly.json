@@ -1,126 +1,134 @@
-[
-    {
-        "style": {
-            "background-color": "#834126"
-        },
-        "properties": [
-            {
-                "name": "Mediterranean Avenue",
-                "value": 60
+{ 
+    "propertyGroups": [
+        {
+            "style": {
+                "background-color": "#834126"
             },
-            {
-                "name": "Baltic Avenue",
-                "value": 60
-            }
-        ]
-    }, {
-        "style": {
-            "background-color": "#99d8fa"
-        },
-        "properties":[
-            {
-                "name": "Oriental Avenue",
-                "value": 100
-            }, {
-                "name": "Vermont Avenue",
-                "value": 100
-            }, {
-                "name": "Connecticut Avenue",
-                "value": 120
-            }
-        ]
-    }, {
-        "style": {
-            "background-color": "#d01685"
-        },
-        "properties":[
-            {
-                "name": "St. Charles Place",
-                "value": 140
-            }, {
-                "name": "States Avenue",
-                "value": 140
-            }, {
-                "name": "Virginia Avenue",
-                "value": 160
-            }
-        ]
-    }, {
-        "style": {
-            "background-color": "#f58200"
-        },
-        "properties":[
-            {
-                "name": "St. James Place",
-                "value": 180
-            }, {
-                "name": "States Avenue",
-                "value": 180
-            }, {
-                "name": "New York Avenue",
-                "value": 200
-            }
-        ]
-    }, {
-        "style": {
-            "background-color": "#e90013"
-        },
-        "properties":[
-            {
-                "name": "Kentucky Avenue",
-                "value": 220
-            }, {
-                "name": "Indiana Avenue",
-                "value": 220
-            }, {
-                "name": "Illinois Avenue",
-                "value": 240
-            }
-        ]
-    }, {
-        "style": {
-            "background-color": "#fef600"
-        },
-        "properties": [
-            {
-                "name": "Atlantic Avenue",
-                "value": 260
-            }, {
-                "name": "Ventnor Avenue",
-                "value": 260
-            }, {
-                "name": "Marvin Gardens",
-                "value": 280
-            }
-        ]
-    }, {
-        "style": {
-            "background-color": "#19a944"
-        },
-        "properties": [
-            {
-                "name": "Pacific Avenue",
-                "value": 300
-            }, {
-                "name": "North Carolina Avenue",
-                "value": 300
-            }, {
-                "name": "Pennsylvania Avenue",
-                "value": 320
-            }
-        ]
-    }, {
-        "style": {
-            "background-color": "#005ab0"
-        },
-        "properties":[
-            {
-                "name": "Park Place",
-                "value": 350
-            }, {
-                "name": "Boardwalk",
-                "value": 400
-            }
-        ]
+            "properties": [
+                {
+                    "name": "Mediterranean Avenue",
+                    "value": 60
+                },
+                {
+                    "name": "Baltic Avenue",
+                    "value": 60
+                }
+            ]
+        }, {
+            "style": {
+                "background-color": "#99d8fa"
+            },
+            "properties":[
+                {
+                    "name": "Oriental Avenue",
+                    "value": 100
+                }, {
+                    "name": "Vermont Avenue",
+                    "value": 100
+                }, {
+                    "name": "Connecticut Avenue",
+                    "value": 120
+                }
+            ]
+        }, {
+            "style": {
+                "background-color": "#d01685"
+            },
+            "properties":[
+                {
+                    "name": "St. Charles Place",
+                    "value": 140
+                }, {
+                    "name": "States Avenue",
+                    "value": 140
+                }, {
+                    "name": "Virginia Avenue",
+                    "value": 160
+                }
+            ]
+        }, {
+            "style": {
+                "background-color": "#f58200"
+            },
+            "properties":[
+                {
+                    "name": "St. James Place",
+                    "value": 180
+                }, {
+                    "name": "States Avenue",
+                    "value": 180
+                }, {
+                    "name": "New York Avenue",
+                    "value": 200
+                }
+            ]
+        }, {
+            "style": {
+                "background-color": "#e90013"
+            },
+            "properties":[
+                {
+                    "name": "Kentucky Avenue",
+                    "value": 220
+                }, {
+                    "name": "Indiana Avenue",
+                    "value": 220
+                }, {
+                    "name": "Illinois Avenue",
+                    "value": 240
+                }
+            ]
+        }, {
+            "style": {
+                "background-color": "#fef600"
+            },
+            "properties": [
+                {
+                    "name": "Atlantic Avenue",
+                    "value": 260
+                }, {
+                    "name": "Ventnor Avenue",
+                    "value": 260
+                }, {
+                    "name": "Marvin Gardens",
+                    "value": 280
+                }
+            ]
+        }, {
+            "style": {
+                "background-color": "#19a944"
+            },
+            "properties": [
+                {
+                    "name": "Pacific Avenue",
+                    "value": 300
+                }, {
+                    "name": "North Carolina Avenue",
+                    "value": 300
+                }, {
+                    "name": "Pennsylvania Avenue",
+                    "value": 320
+                }
+            ]
+        }, {
+            "style": {
+                "background-color": "#005ab0"
+            },
+            "properties":[
+                {
+                    "name": "Park Place",
+                    "value": 350
+                }, {
+                    "name": "Boardwalk",
+                    "value": 400
+                }
+            ]
+        }
+    ],
+    "gameSettings": {
+        "players": 4,
+        "accountingFee": 2,
+        "companyPurchase": 100,
+        "ownershipChange": 75
     }
-]
+}
