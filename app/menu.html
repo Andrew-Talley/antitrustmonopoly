@@ -49,7 +49,12 @@
                             <p>Players</p>
                             <div class="input-div not-dollars">
                                 <p>{{ settings.players }}</p>
-                                <input type="range" min="2" max="10" class="settings-input" ng-model="settings.players" />
+                                <input type="range" min="2" max="10" class="settings-input" ng-model="settings.players.length" />
+                            </div>
+                            <div class="all-players">
+                                <div class="input-div not-dollars" ng-repeat="player in players">
+                                    <input class="settings-input" ng-model="player" />
+                                </div>
                             </div>
                         </div>
                         <div class="settings-box">
@@ -80,9 +85,12 @@
                         <div class="fa">Buy Property &#xf107; </div>
                         <div class="dropdown">
                             <div class="dropdown-group" ng-repeat="group in groups">
-                                <a class="dropdown-option" ng-repeat="prop in group.properties | filter: prop.owned" style="border-left:.5em solid {{group.style['background-color']}}">{{prop.name}}</a>
+                                <a class="dropdown-option" ng-repeat="prop in group.properties | filter: {'owned': false}" style="border-left:.5em solid {{group.style['background-color']}}">{{prop.name}}</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="next-player">
+                        <div>Next Player</div>
                     </div>
                 </div>
             </div>
