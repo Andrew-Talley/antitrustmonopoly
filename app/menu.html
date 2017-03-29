@@ -1,65 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html charset='utf-8'>
     <head>
         <title>Setup</title>
-        <link rel="stylesheet" type="text/css" href="style/menu.css" />
+        <link rel="stylesheet" href="style/menu.css" />
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+        <link rel="stylesheet" href="style/game.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src="https://use.fontawesome.com/a59db19925.js"></script>
     </head>
     <body>
-        <div class="body-container" ng-app="menuApp" ng-controller="menuController">
-            <div class="board-options">
-                <h1>Choose board:</h1>
-                <div class="selection-array">
-                    <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in allOptions">
-                        <div class="img-box">
-                            <img ng-src="{{ opt.image }}" />
+        <div class="container" ng-app="app" ng-controller="appController">
+            <div class="menu-container">
+                <div class="board-options">
+                    <h1>Choose board:</h1>
+                    <div class="selection-array">
+                        <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in allOptions">
+                            <div class="img-box">
+                                <img ng-src="{{ opt.image }}" />
+                            </div>
+                            <h2>{{ opt.text}}</h2>
                         </div>
-                        <h2>{{ opt.text}}</h2>
                     </div>
+                </div>
+                <div class="final-setup">
+                    <h1>Take a final look</h1>
+                    <h2></h2>
+                    <div class="property-group" ng-repeat="group in groups">
+                        <div class="left" ng-style="group.style" ng-click="leftClicked($event)">
+                            <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
+                        </div>
+                        <div class="all-properties">
+                            <div class="property" ng-repeat="property in group.properties">
+                                <input class="name" ng-model="property.name" />
+                                <div class="value-div">
+                                    <input class="value" ng-model="property.value" />
+                                </div>
+                                <div class="remove" ng-click="group.properties.splice($index,1)">X</div>
+                            </div>
+                            <button class="property" ng-click="addProp($index)">Add Property</but>
+                        </div>
+                        <input type="color" ng-model="group.style['background-color']" />
+                    </div>
+                    <button class="property-group" ng-click="addPropGroup()">Add Property Group</button>
+                    <h2>Settings</h2>
+                    <div class="settings">
+                        <div class="settings-box">
+                            <p>Players</p>
+                            <div class="input-div not-dollars">
+                                <p>{{ settings.players }}</p>
+                                <input type="range" min="2" max="10" class="settings-input" ng-model="settings.players" />
+                            </div>
+                        </div>
+                        <div class="settings-box">
+                            <p>Accounting Fee</p>
+                            <div class="input-div">
+                                <input class="settings-input" ng-model="settings.accountingFee" />
+                            </div>
+                        </div>
+                        <div class="settings-box">
+                            <p>Company Purchase Fee</p>
+                            <div class="input-div">
+                                <input class="settings-input" ng-model="settings.companyPurchase" />
+                            </div>
+                        </div>
+                        <div class="settings-box">
+                            <p>Ownership Change Fee</p>
+                            <div class="input-div">
+                                <input class="settings-input" ng-model="settings.ownershipChange" />
+                            </div>
+                        </div>
+                    </div>
+                    <button class="start-button" ng-class="start()">Start</button>
                 </div>
             </div>
-            <div class="final-setup">
-                <h1>Take a final look</h1>
-                <h2></h2>
-                <div class="property-group" ng-repeat="group in groups">
-                    <div class="left" ng-style="group.style" ng-click="leftClicked($event)">
-                        <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
-                    </div>
-                    <div class="all-properties">
-                        <div class="property" ng-repeat="property in group.properties">
-                            <input class="name" ng-model="property.name" />
-                            <div class="value-div">
-                                <input class="value" ng-model="property.value" />
+            <div class="game">
+                <div class="menu">
+                    <div class="buy-property">
+                        <div class="fa">Buy Property &#xf107; </div>
+                        <div class="dropdown">
+                            <div class="dropdown-group" ng-repeat="group in groups">
+                                <a class="dropdown-option" ng-repeat="prop in group.properties | filter: prop.owned" style="border-left:.5em solid {{group.style['background-color']}}">{{prop.name}}</a>
                             </div>
-                            <div class="remove" ng-click="group.properties.splice($index,1)">X</div>
                         </div>
-                        <button class="property" ng-click="addProp($index)">Add Property</but>
-                    </div>
-                    <!--<input type="color" ng-model="group.bgColor" />-->
-                </div>
-                <button class="property-group" ng-click="addPropGroup()">Add Property Group</button>
-                <h2>Settings</h2>
-                <div class="settings">
-                    <div class="settings-box">
-                        <p>Players</p>
-                        <div class="range-div">
-                            <input type="range" min="2" max="10" class="setting-input" ng-model="settings.players" />
-                            <p>{{ settings.players }}</p>
-                        </div>
-                    </div>
-                    <div class="settings-box">
-                        <p>Accounting Fee</p>
-                        <input class="setting-input" ng-model="settings.accountingFee" />
-                    </div>
-                    <div class="settings-box">
-                        <p>Company Purchase Fee</p>
-                        <input class="settings-input" ng-model="settings.companyPurchase" />
-                    </div>
-                    <div class="settings-box">
-                        <p>Ownership Change Fee</p>
-                        <input class="settings-input" ng-model="settings.ownershipChange" />
                     </div>
                 </div>
             </div>

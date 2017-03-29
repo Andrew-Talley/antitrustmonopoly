@@ -1,5 +1,5 @@
-var app = angular.module('menuApp', []);
-app.controller('menuController', function ($scope, $http) {
+var menuApp = angular.module('app', []);
+menuApp.controller('appController', function ($scope, $http) {
     $scope.allOptions = [];
     $scope.groups = [];
     $scope.settings = {};
@@ -7,7 +7,6 @@ app.controller('menuController', function ($scope, $http) {
         $scope.allOptions = response;
     });
     $http.get('https://www.antitrustmonopoly.com/app/scripts/monopoly.json').success(function (response) {
-        console.log(response);
         $scope.groups = response.propertyGroups;
         $scope.settings = response.gameSettings;
     });
@@ -16,7 +15,9 @@ app.controller('menuController', function ($scope, $http) {
     }
     $scope.addPropGroup = function () {
         $scope.groups.push({
-            "background-color": "#FFFFFF",
+            "style": {
+                "background-color": "#888"
+            },
             "properties": [
                 {
                     "name": "",
@@ -38,7 +39,8 @@ app.controller('menuController', function ($scope, $http) {
 
         }
         $http.get(url).success(function (response) {
-            $scope.groups = response;
+            $scope.groups = response.propertyGroups;
+            $scope.settings = response.gameSettings;
         });
     }
 });

@@ -5,7 +5,12 @@ body {
     font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.body-container {
+input {
+    font-size: 1.25em;
+    padding: .25em;
+}
+
+.menu-container {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -32,7 +37,7 @@ body {
     background-size: 100%;
     padding: .5em;
     cursor: pointer;
-    transition: .5s;
+    transition: .25s;
 }
 
 .option-box:hover {
@@ -147,18 +152,26 @@ button.property-group {
     padding-left: 1em;
 }
 
-.value-div {
+.value-div, .input-div {
     position: relative;
 }
 
-.value-div::before {
+.input-div input {
+    padding-left: 1em;
+}
+
+.value-div::before, .input-div::before {
     content: '$';
     position: absolute;
     left: .5em;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-45%);
     z-index: 1;
     color: #999;
+}
+
+.input-div.not-dollars::before {
+    content: '';
 }
 
 .remove {
@@ -180,10 +193,49 @@ input[type='color'] {
     display: flex;
 }
 
-.settings-box p {
+.settings-box > p, .input-div {
+    margin: 1em;
+}
+
+.input-div {
     flex-grow: 1;
+    display: flex;
+    padding: 0;
 }
 
 .settings-input {
-    width: 100px;
+    flex-grow: 1;
+}
+
+.input-div p {
+    box-sizing: border-box;
+    flex-grow: 0;
+    width: 2em;
+    margin: 0;
+    padding-left: .5em;
+    font-size: 1.25em;
+}
+
+.input-div.input-div.not-dollars input {
+    margin: 0;
+    padding: 0;
+}
+
+.settings-box > p {
+    width: 200px;
+    font-size: 1.1em;
+}
+
+.start-button {
+    font-size: 1.5em;
+    font-weight: 600;
+    background-color: #0c0;
+    color: white;
+    border: none;
+    padding: .25em 1em;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    border-radius: 3px;
 }
