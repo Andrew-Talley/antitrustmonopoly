@@ -151,18 +151,22 @@
         "players": [{
                 "name": "Player 1",
                 "entities": [],
+                "directOwnership": [],
                 "maxLevel": 0
             },{
                 "name": "Player 2",
                 "entities": [],
+                "directOwnership": [],
                 "maxLevel": 0
             }, {
                 "name": "Player 3",
                 "entities": [],
+                "directOwnership": [],
                 "maxLevel": 0
             }, {
                 "name": "Player 4",
                 "entities": [],
+                "directOwnership": [],
                 "maxLevel": 0
             }],
         "accountingFee": 2,
