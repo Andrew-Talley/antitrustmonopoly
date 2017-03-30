@@ -150,16 +150,20 @@
     "gameSettings": {
         "players": [{
                 "name": "Player 1",
-                "entities": []
+                "entities": [],
+                "maxLevel": 0
             },{
                 "name": "Player 2",
-                "entities": []
+                "entities": [],
+                "maxLevel": 0
             }, {
                 "name": "Player 3",
-                "entities": []
+                "entities": [],
+                "maxLevel": 0
             }, {
                 "name": "Player 4",
-                "entities": []
+                "entities": [],
+                "maxLevel": 0
             }],
         "accountingFee": 2,
         "companyPurchase": 100,
