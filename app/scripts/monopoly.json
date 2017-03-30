@@ -148,7 +148,7 @@
         }
     ],
     "gameSettings": {
-        "players": ["Player 1", "Player 2", "Player 3", "Player 4"],
+        "players": 4,
         "accountingFee": 2,
         "companyPurchase": 100,
         "ownershipChange": 75
