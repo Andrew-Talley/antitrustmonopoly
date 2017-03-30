@@ -150,32 +150,16 @@
     "gameSettings": {
         "players": [{
                 "name": "Player 1",
-                "properties": [{
-                    "name": "Boardwalk",
-                    "value": 400,
-                    "owned": false
-                }]
+                "properties": []
             },{
                 "name": "Player 2",
-                "properties": [{
-                    "name": "Boardwalk",
-                    "value": 400,
-                    "owned": false
-                }]
+                "properties": []
             }, {
                 "name": "Player 3",
-                "properties": [{
-                    "name": "Boardwalk",
-                    "value": 400,
-                    "owned": false
-                }]
+                "properties": []
             }, {
                 "name": "Player 4",
-                "properties": [{
-                    "name": "Boardwalk",
-                    "value": 400,
-                    "owned": false
-                }]
+                "properties": []
             }],
         "accountingFee": 2,
         "companyPurchase": 100,
