@@ -155,22 +155,26 @@
     "players": [
         {
             "name": "Player 1",
-            "entities": [],
+            "properties": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         },{
             "name": "Player 2",
-            "entities": [],
+            "properties": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         }, {
             "name": "Player 3",
-            "entities": [],
+            "properties": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         }, {
             "name": "Player 4",
-            "entities": [],
+            "properties": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         }
