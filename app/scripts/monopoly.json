@@ -4,6 +4,7 @@
             "style": {
                 "background-color": "rgba(131,65,38, 1)"
             },
+            "isReady": false,
             "properties": [
                 {
                     "name": "Mediterranean Avenue",
@@ -22,6 +23,7 @@
             "style": {
                 "background-color": "rgba(153,216,250, 1)"
             },
+            "isReady": false,
             "properties":[
                 {
                     "name": "Oriental Avenue",
@@ -44,6 +46,7 @@
             "style": {
                 "background-color": "rgba(208,22,133, 1)"
             },
+            "isReady": false,
             "properties":[
                 {
                     "name": "St. Charles Place",
@@ -66,6 +69,7 @@
             "style": {
                 "background-color": "rgba(245,130,0, 1)"
             },
+            "isReady": false,
             "properties":[
                 {
                     "name": "St. James Place",
@@ -88,6 +92,7 @@
             "style": {
                 "background-color": "rgba(233,0,19, 1)"
             },
+            "isReady": false,
             "properties":[
                 {
                     "name": "Kentucky Avenue",
@@ -110,6 +115,7 @@
             "style": {
                 "background-color": "rgba(254,246,0, 1)"
             },
+            "isReady": false,
             "properties": [
                 {
                     "name": "Atlantic Avenue",
@@ -132,6 +138,7 @@
             "style": {
                 "background-color": "rgba(25,169,68, 1)"
             },
+            "isReady": false,
             "properties": [
                 {
                     "name": "Pacific Avenue",
@@ -154,6 +161,7 @@
             "style": {
                 "background-color": "rgba(0,90,176, 1)"
             },
+            "isReady": false,
             "properties":[
                 {
                     "name": "Park Place",
