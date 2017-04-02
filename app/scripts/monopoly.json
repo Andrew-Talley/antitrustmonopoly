@@ -35,7 +35,7 @@
                     "owned": false
                 }, {
                     "name": "Connecticut Avenue",
-                    "name": "Conn. Ave.",
+                    "short": "Conn. Ave.",
                     "value": 120,
                     "owned": false
                 }
