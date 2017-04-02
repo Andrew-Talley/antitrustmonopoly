@@ -8,13 +8,13 @@
             "properties": [
                 {
                     "name": "Mediterranean Avenue",
-                    "short": "Med. Ave.",
+                    "short": "Med. Ave",
                     "value": 60,
                     "owned": false
                 },
                 {
                     "name": "Baltic Avenue",
-                    "short": "Baltic Ave.",
+                    "short": "Baltic Ave",
                     "value": 60,
                     "owned": false
                 }
@@ -27,17 +27,17 @@
             "properties":[
                 {
                     "name": "Oriental Avenue",
-                    "short": "Oriental Ave.",
+                    "short": "Oriental Ave",
                     "value": 100,
                     "owned": false
                 }, {
                     "name": "Vermont Avenue",
-                    "short": "Vermont Ave.",
+                    "short": "VT Ave",
                     "value": 100,
                     "owned": false
                 }, {
                     "name": "Connecticut Avenue",
-                    "short": "Conn. Ave.",
+                    "short": "CT Ave",
                     "value": 120,
                     "owned": false
                 }
@@ -50,17 +50,17 @@
             "properties":[
                 {
                     "name": "St. Charles Place",
-                    "short": "St. Charles Pl.",
+                    "short": "St. Charles Pl",
                     "value": 140,
                     "owned": false
                 }, {
                     "name": "States Avenue",
-                    "short": "States Ave.",
+                    "short": "States Ave",
                     "value": 140,
                     "owned": false
                 }, {
                     "name": "Virginia Avenue",
-                    "short": "Virginia Ave.",
+                    "short": "VA Ave",
                     "value": 160,
                     "owned": false
                 }
@@ -73,17 +73,17 @@
             "properties":[
                 {
                     "name": "St. James Place",
-                    "short": "St. James Pl.",
+                    "short": "St. James Pl",
                     "value": 180,
                     "owned": false
                 }, {
-                    "name": "States Avenue",
-                    "short": "States Ave.",
+                    "name": "Tennessee Avenue",
+                    "short": "TN Ave",
                     "value": 180,
                     "owned": false
                 }, {
                     "name": "New York Avenue",
-                    "short": "New York Ave.",
+                    "short": "NY Ave",
                     "value": 200,
                     "owned": false
                 }
@@ -96,17 +96,17 @@
             "properties":[
                 {
                     "name": "Kentucky Avenue",
-                    "short": "Kentucky Ave.",
+                    "short": "KY Ave",
                     "value": 220,
                     "owned": false
                 }, {
                     "name": "Indiana Avenue",
-                    "short": "Indiana Ave.",
+                    "short": "IN Ave",
                     "value": 220,
                     "owned": false
                 }, {
                     "name": "Illinois Avenue",
-                    "short": "Illinois Ave.",
+                    "short": "IL Ave",
                     "value": 240,
                     "owned": false
                 }
@@ -119,12 +119,12 @@
             "properties": [
                 {
                     "name": "Atlantic Avenue",
-                    "short": "Atlantic Ave.",
+                    "short": "Atlantic Ave",
                     "value": 260,
                     "owned": false
                 }, {
                     "name": "Ventnor Avenue",
-                    "short": "Ventor Ave.",
+                    "short": "Ventor Ave",
                     "value": 260,
                     "owned": false
                 }, {
@@ -147,12 +147,12 @@
                     "owned": false
                 }, {
                     "name": "North Carolina Avenue",
-                    "short": "NC Ave.",
+                    "short": "NC Ave",
                     "value": 300,
                     "owned": false
                 }, {
                     "name": "Pennsylvania Avenue",
-                    "short": "Penn. Ave.",
+                    "short": "PA Ave",
                     "value": 320,
                     "owned": false
                 }
@@ -165,7 +165,7 @@
             "properties":[
                 {
                     "name": "Park Place",
-                    "short": "Park Pl.",
+                    "short": "Park Pl",
                     "value": 350,
                     "owned": false
                 }, {
