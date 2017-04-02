@@ -196,6 +196,7 @@
         }, {
             "name": "Player 4",
             "properties": [],
+            "monopolies": [],
             "companies": {},
             "directOwnership": [],
             "maxLevel": 0
