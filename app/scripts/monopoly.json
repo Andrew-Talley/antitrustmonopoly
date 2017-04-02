@@ -13,7 +13,7 @@
                 },
                 {
                     "name": "Baltic Avenue",
-                    "name": "Baltic Ave.",
+                    "short": "Baltic Ave.",
                     "value": 60,
                     "owned": false
                 }
