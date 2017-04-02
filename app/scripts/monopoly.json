@@ -32,12 +32,12 @@
                     "name": "Vermont Avenue",
                     "short": "Vermont Ave.",
                     "value": 100,
-                    "owned": true
+                    "owned": false
                 }, {
                     "name": "Connecticut Avenue",
                     "name": "Conn. Ave.",
                     "value": 120,
-                    "owned": true
+                    "owned": false
                 }
             ]
         }, {
