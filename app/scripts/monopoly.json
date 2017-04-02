@@ -7,11 +7,13 @@
             "properties": [
                 {
                     "name": "Mediterranean Avenue",
+                    "short": "Med. Ave.",
                     "value": 60,
                     "owned": false
                 },
                 {
                     "name": "Baltic Avenue",
+                    "name": "Baltic Ave.",
                     "value": 60,
                     "owned": false
                 }
@@ -23,14 +25,17 @@
             "properties":[
                 {
                     "name": "Oriental Avenue",
+                    "short": "Oriental Ave.",
                     "value": 100,
                     "owned": false
                 }, {
                     "name": "Vermont Avenue",
+                    "short": "Vermont Ave.",
                     "value": 100,
                     "owned": true
                 }, {
                     "name": "Connecticut Avenue",
+                    "name": "Conn. Ave.",
                     "value": 120,
                     "owned": true
                 }
@@ -42,14 +47,17 @@
             "properties":[
                 {
                     "name": "St. Charles Place",
+                    "short": "St. Charles Pl.",
                     "value": 140,
                     "owned": false
                 }, {
                     "name": "States Avenue",
+                    "short": "States Ave.",
                     "value": 140,
                     "owned": false
                 }, {
                     "name": "Virginia Avenue",
+                    "short": "Virginia Ave.",
                     "value": 160,
                     "owned": false
                 }
@@ -61,14 +69,17 @@
             "properties":[
                 {
                     "name": "St. James Place",
+                    "short": "St. James Pl.",
                     "value": 180,
                     "owned": false
                 }, {
                     "name": "States Avenue",
+                    "short": "States Ave.",
                     "value": 180,
                     "owned": false
                 }, {
                     "name": "New York Avenue",
+                    "short": "New York Ave.",
                     "value": 200,
                     "owned": false
                 }
@@ -80,14 +91,17 @@
             "properties":[
                 {
                     "name": "Kentucky Avenue",
+                    "short": "Kentucky Ave.",
                     "value": 220,
                     "owned": false
                 }, {
                     "name": "Indiana Avenue",
+                    "short": "Indiana Ave.",
                     "value": 220,
                     "owned": false
                 }, {
                     "name": "Illinois Avenue",
+                    "short": "Illinois Ave.",
                     "value": 240,
                     "owned": false
                 }
@@ -99,14 +113,17 @@
             "properties": [
                 {
                     "name": "Atlantic Avenue",
+                    "short": "Atlantic Ave.",
                     "value": 260,
                     "owned": false
                 }, {
                     "name": "Ventnor Avenue",
+                    "short": "Ventor Ave.",
                     "value": 260,
                     "owned": false
                 }, {
                     "name": "Marvin Gardens",
+                    "short": "Marvin Gardens",
                     "value": 280,
                     "owned": false
                 }
@@ -118,14 +135,17 @@
             "properties": [
                 {
                     "name": "Pacific Avenue",
+                    "short": "Pacific Ave",
                     "value": 300,
                     "owned": false
                 }, {
                     "name": "North Carolina Avenue",
+                    "short": "NC Ave.",
                     "value": 300,
                     "owned": false
                 }, {
                     "name": "Pennsylvania Avenue",
+                    "short": "Penn. Ave.",
                     "value": 320,
                     "owned": false
                 }
@@ -137,10 +157,12 @@
             "properties":[
                 {
                     "name": "Park Place",
+                    "short": "Park Pl.",
                     "value": 350,
                     "owned": false
                 }, {
                     "name": "Boardwalk",
+                    "short": "Boardwalk",
                     "value": 400,
                     "owned": false
                 }
