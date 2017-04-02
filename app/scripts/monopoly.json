@@ -2,7 +2,7 @@
     "propertyGroups": [
         {
             "style": {
-                "background-color": "#834126"
+                "background-color": "rgba(131,65,38, 1)"
             },
             "properties": [
                 {
@@ -20,7 +20,7 @@
             ]
         }, {
             "style": {
-                "background-color": "#99d8fa"
+                "background-color": "rgba(153,216,250, 1)"
             },
             "properties":[
                 {
@@ -42,7 +42,7 @@
             ]
         }, {
             "style": {
-                "background-color": "#d01685"
+                "background-color": "rgba(208,22,133, 1)"
             },
             "properties":[
                 {
@@ -64,7 +64,7 @@
             ]
         }, {
             "style": {
-                "background-color": "#f58200"
+                "background-color": "rgba(245,130,0, 1)"
             },
             "properties":[
                 {
@@ -86,7 +86,7 @@
             ]
         }, {
             "style": {
-                "background-color": "#e90013"
+                "background-color": "rgba(233,0,19, 1)"
             },
             "properties":[
                 {
@@ -108,7 +108,7 @@
             ]
         }, {
             "style": {
-                "background-color": "#fef600"
+                "background-color": "rgba(254,246,0, 1)"
             },
             "properties": [
                 {
@@ -130,7 +130,7 @@
             ]
         }, {
             "style": {
-                "background-color": "#19a944"
+                "background-color": "rgba(25,169,68, 1)"
             },
             "properties": [
                 {
@@ -152,7 +152,7 @@
             ]
         }, {
             "style": {
-                "background-color": "#005ab0"
+                "background-color": "rgba(0,90,176, 1)"
             },
             "properties":[
                 {
