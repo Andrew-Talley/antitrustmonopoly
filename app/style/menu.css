@@ -65,7 +65,7 @@ input {
     flex-grow: 0;
 }
 
-.property-group {
+.menu-property-group {
     position: relative;
     width: 100%;
     display: flex;
@@ -116,7 +116,7 @@ input {
     border: 0px solid #000;
 }
 
-button.property, button.property-group {
+button.property, button.menu-property-group {
     display: block;
     font-size: 1.25em;
     background-color: #eee;
@@ -127,7 +127,7 @@ button.property, button.property-group {
     padding: .25em;
 }
 
-button.property-group {
+button.menu-property-group {
     font-size: 1.25em;
     padding: .5em;
     font-weight: 600;

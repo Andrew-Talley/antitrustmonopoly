@@ -2,6 +2,9 @@
     margin: 2em 0;
     height: 100vh;
     background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .buy-property {
@@ -18,47 +21,75 @@
     border-radius: .1em;
 }
 
-.menu {
+.menu-bar {
+    display: flex;
+    width: 960px;
+    min-height: 3.2em;
+    color: #000;
+    border-bottom: 1px solid #000;
     width: 100%;
-    background-color: #fff;
-    box-shadow: 0px 0px 0px 1px #888;
+    justify-content: space-between;
     flex-grow: 0;
-    height: 2em;
-    /*display: flex;
-    flex-direction: row;*/
 }
 
-.menu > div {
-    margin: 0 2em;
-}
-
-.dropdown {
-    display: none;
+.bar-item {
+    position: relative;
+    padding: 5px;
     flex-grow: 1;
-    padding: 0 !important;
-    max-width: 400px;
-}
-
-.dropdown-group {
+    border-right: #fff 1px solid;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
+    max-width: 250px;
 }
 
-.buy-property:hover .dropdown {
-    overflow-y: scroll;
+.bar-item > h4 {
+    padding: .4em;
+    margin: .4em;
+    text-align: center;
+    font-size: 1em;
+    position: relative;
+}
+
+.bar-item:last-child {
+    border-right: none;
+}
+
+.expanded-menu {
+    box-sizing: border-box;
+    display: none;
+    max-height: 300px;
+    overflow: scroll;
+    position: absolute;
+    top: calc(1em + 33px);
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    padding: 2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.bar-item:hover .expanded-menu {
     display: block;
 }
 
-.dropdown-option {
-    height: 2em;
-    border: 1px solid #888;
-    transition: .25s;
-    cursor: pointer;
+.sub-bar-item {
+    font-size: 1em;
+    padding: .2em;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    transition: background-color .2s, color .2s;
 }
 
-.dropdown-option:hover {
-    background-color: #ffa;
+.sub-bar-item:hover {
+    background-color: #ddd;
+    color: #025A27;
 }
+
+.sub-bar-item:last-child {
+    border-bottom: none;
+}
+
 
 .next-player {
     height: 100%;
@@ -69,4 +100,96 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+
+.player-properties {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.non-monopoly {
+    width: 200px;
+    border-right: 1px solid #333;
+    color: #fff;
+    background-color: #000080;
+    flex-grow: 0;
+}
+
+.non-monopoly ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.non-monopoly-group {
+    margin: .25em 0;
+    padding-right: 1em;
+    position: relative;
+}
+
+.non-monopoly-arrow {
+    width: 1em;
+    flex-grow: 0;
+    position: relative;
+}
+
+.ready {
+    cursor: pointer;
+}
+
+.ready::after {
+    content: '\f061';
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    top: 50%;
+    right: .5em;
+    transform: translateX(50%)translateY(-50%);
+}
+
+.non-monopoly-arrow i {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.monopoly-grid {
+    flex-grow: 1;
+    position: relative;
+}
+
+.player-monopolies {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.player-monopolies .property {
+    max-width: 200px;
+    border: 1px solid #333;
+    border-width: 0px 1px
+    /*margin: 4px;*/
+}
+
+.player-monopolies .property div {
+    width: 100%;
+}
+
+.player-monopolies .property-group {
+    border: 1px solid #000;
+    margin: 0px 3px;
+    display: flex;
+    flex-direction: row;
+}
+
+.player-monopolies h3 {
+    margin: .2em 0;
+    word-break: break-word;
+}
+
+#org-interface {
+    width: 100%;
+    flex-grow: 1;
 }
