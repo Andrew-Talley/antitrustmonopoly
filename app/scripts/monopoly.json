@@ -190,7 +190,7 @@
             "companies": [],
             "directOwnership": [[]],
             "maxLevel": 0,
-            "companyNumber": 0
+            "companyNumber": 1
         },{
             "name": "Player 2",
             "properties": {},
@@ -198,7 +198,7 @@
             "companies": [],
             "directOwnership": [[]],
             "maxLevel": 0,
-            "companyNumber": 0
+            "companyNumber": 1
         }, {
             "name": "Player 3",
             "properties": {},
@@ -206,7 +206,7 @@
             "companies": [],
             "directOwnership": [[]],
             "maxLevel": 0,
-            "companyNumber": 0
+            "companyNumber": 1
         }, {
             "name": "Player 4",
             "properties": {},
@@ -214,7 +214,7 @@
             "companies": [[]],
             "directOwnership": [],
             "maxLevel": 0,
-            "companyNumber": 0
+            "companyNumber": 1
         }
     ]
 }
