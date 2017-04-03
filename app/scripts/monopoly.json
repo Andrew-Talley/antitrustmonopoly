@@ -187,28 +187,28 @@
             "name": "Player 1",
             "properties": {},
             "monopolies": {},
-            "entities": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         },{
             "name": "Player 2",
             "properties": {},
             "monopolies": {},
-            "entities": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         }, {
             "name": "Player 3",
             "properties": {},
             "monopolies": {},
-            "entities": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         }, {
             "name": "Player 4",
             "properties": {},
             "monopolies": {},
-            "entities": [],
+            "companies": [],
             "directOwnership": [],
             "maxLevel": 0
         }
