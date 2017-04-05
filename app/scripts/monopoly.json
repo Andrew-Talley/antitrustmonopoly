@@ -188,7 +188,7 @@
             "properties": {},
             "monopolies": {},
             "companies": [],
-            "directOwnership": [[]],
+            "directOwnership": [],
             "maxLevel": 0,
             "companyNumber": 1
         },{
@@ -196,7 +196,7 @@
             "properties": {},
             "monopolies": {},
             "companies": [],
-            "directOwnership": [[]],
+            "directOwnership": [],
             "maxLevel": 0,
             "companyNumber": 1
         }, {
@@ -204,7 +204,7 @@
             "properties": {},
             "monopolies": {},
             "companies": [],
-            "directOwnership": [[]],
+            "directOwnership": [],
             "maxLevel": 0,
             "companyNumber": 1
         }, {
