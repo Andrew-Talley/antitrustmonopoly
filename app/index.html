@@ -12,7 +12,8 @@
     <body>
         <div class="container" 
             ng-app="app" 
-            ng-controller="appController">
+            ng-controller="appController"
+            ng-click="deactivateCompany($event)">
             <div class="menu-container">
                 <div class="board-options">
                     <h1>Choose board:</h1>
@@ -90,7 +91,8 @@
                         <h4>Buy Property <span class="fa">&#xf107;</span> </h4>
                         <div class="expanded-menu">
                             <div ng-repeat="group in groups">
-                                <div ng-repeat="prop in group.properties |filter:{'owned': false}" 
+                                <div ng-repeat="prop in group.properties 
+                                    | filter:{'owned': false}" 
                                     ng-attr-style="border-left:.5em solid {{group.style['background-color']}}" 
                                     ng-click="addPropertyToPlayer(prop)">
                                     <div class="sub-bar-item"> {{ prop.name }}</div>
@@ -98,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="buy-company">
+                    <div class="buy-company bar-item" ng-click="addCompanyToPlayer()">
                         <h4>Buy Company</h4>
                     </div>
                     <div class="bar-item" ng-click="nextPlayer()">
@@ -109,27 +111,70 @@
                     <div class="non-monopoly">
                         <ul>
                             <div class="non-monopoly-group" 
-                                ng-repeat="group in players[currentPlayer].companies" 
+                                ng-repeat="group in players[currentPlayer].properties" 
                                 ng-attr-style="border-left: 20px solid {{ groups[group.order].style['background-color'] }}" 
                                 ng-class="groups[group.order].isReady ? 'ready' : ''"
                                 ng-style="{'background-color': 
                                             {true: groups[group.order].style['background-color'].slice(0,-2) + '.5)',false:'transparent'}
                                             [groups[group.order].isReady == true]}"
-                                ng-click="addPropertyGroup(group)">
-                                <li class="non-monopoly-prop" ng-repeat="prop in group.companies">
+                                ng-click="addMonopolyGroup(group)">
+                                <li class="non-monopoly-prop" 
+                                    ng-repeat="prop in group.properties 
+                                    | orderBy: ['propInd']">
                                     {{groups[prop.groupInd].properties[prop.propInd].name}}
                                 </li>
                             </div>
                         </ul>
                     </div>
                     <div class="monopoly-grid">
-                        <div class="player-monopolies">
-                            <div class="property-group" 
-                                ng-repeat="group in players[currentPlayer].monopolies">
-                                <div class="property" 
-                                    ng-repeat="prop in group.companies | orderBy: ['propInd']">
-                                    <div ng-attr-style="border-top: 1.5em solid {{groups[group.order].style['background-color'] }} ">
-                                        <h4 align="center"> {{ groups[prop.groupInd].properties[prop.propInd].short }} </h4>
+                        <canvas id="monopoly-canvas"></canvas>
+                        <div class="company-positioning">
+                            <div class="company-row">
+                                <h3> {{ players[currentPlayer].name }} </h3>
+                            </div>
+                            <div class="company-row" 
+                                ng-repeat="i in iterateOver(players[currentPlayer].maxLevel) track by $index" 
+                                ng-click="activateCompany($event)">
+                                <div class="company" 
+                                    ng-repeat="comp in players[currentPlayer].companies 
+                                    | filter: {'level': ($index + 1)} ">
+                                    {{ comp.name }}
+                                    <div class="tooltip">
+                                        <div class="pointy"></div>
+                                        <div class="message-container">
+                                            <div class="message first active">
+                                                <input ng-model="comp.name" />
+                                                <button ng-click="sever($event)">Sever Ownership</button>
+                                                <button ng-click="addOwner($event)">Add Owner...</button>
+                                            </div>
+                                            <div class="message choose">
+                                                <h3>Choose Company</h3>
+                                                <div class="choose-all-companies">
+                                                    <div class="company-decision" 
+                                                        ng-repeat="subComp in players[currentPlayer].companies 
+                                                        | filter: {'name': '!' + comp}">
+                                                        {{ subComp.name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="message sever">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="player-monopolies company-row">
+                                <div class="property-group" 
+                                    ng-repeat="group in players[currentPlayer].monopolies">
+                                    <div class="property" 
+                                        ng-repeat="prop in group.properties 
+                                        | orderBy:['propInd']">
+                                        <div class="property-holder"
+                                            ng-attr-style="border-top: 1.5em solid {{groups[group.order].style['background-color'] }}">
+                                            <h4 align="center"> {{ groups[prop.groupInd].properties[prop.propInd].short }} </h4>
+                                            <button class="sell" ng-click="sellProperty(prop)">Sell</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

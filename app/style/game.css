@@ -21,6 +21,10 @@
     border-radius: .1em;
 }
 
+.buy-company {
+    cursor: pointer;
+}
+
 .menu-bar {
     display: flex;
     width: 960px;
@@ -147,6 +151,10 @@
     transform: translateX(50%)translateY(-50%);
 }
 
+.ready:hover::after {
+        text-shadow: rgba(255,255,255,0.4) -1px 0px 2px, rgba(255,255,255,0.4) 0px -1px 2px, rgba(255,255,255,0.4) 1px 0px 2px, rgba(255,255,255,0.4) 0px 1px 2px;
+}
+
 .non-monopoly-arrow i {
     position: relative;
     top: 50%;
@@ -156,14 +164,133 @@
 .monopoly-grid {
     flex-grow: 1;
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.company-positioning {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.company-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.company {
+    position: relative;
+    padding: .25em;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.company:hover {
+    background-color: #f80;
+}
+
+.tooltip {
+    box-sizing: border-box;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    opacity: 0;
+    transition: .25s;
+    pointer-events: none;
+}
+
+.company.active-company .tooltip {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.pointy {
+    position: relative;
+    left: 50%;
+    width: 0px;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-width: 0px 10px 10px 10px;
+    border-bottom-color: #ddd;
+}
+
+.message-container {
+    position: relative;
+    overflow: hidden;
+    height: 8em;
+    width: 220px;
+}
+
+.message {
+    position: absolute;
+    left: 0;
+    transform: translateX(100%);
+    top: 0;
+    width: 200px;
+    padding: 10px;
+    transition: .3s;
+    background-color: #ddd;
+    height: 4.8em;
+}
+
+.message.first {
+    position: relative;
+    transform: translateX(-100%);
+}
+
+.message.active {
+    transform: translateX(0);
+}
+
+.message.choose {
+    display: flex;
+    flex-direction: column;
+}
+
+.message.choose h3 {
+    margin: .2em 0;
+    flex-grow: 0;
+    text-align: center;
+}
+
+.choose-all-companies {
+    flex-grow: 1;
+    width: 100%;
+    background-color: white;
+    border: 1px inset #777;
+    overflow: scroll;
+}
+
+.company-decision {
+    padding: .2em;
+    cursor: pointer;
+}
+
+.company-decision:hover {
+    background-color: #ddd;
+}
+
+.tooltip input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.tooltip button {
+    width: 100%;
 }
 
 .player-monopolies {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
+    flex-grow: 0;
+    z-index: 1;
 }
 
 .player-monopolies .property {
@@ -184,12 +311,37 @@
     flex-direction: row;
 }
 
-.player-monopolies h3 {
-    margin: .2em 0;
-    word-break: break-word;
+.property-holder {
+    display: flex;
+    flex-direction: column;
 }
 
-#org-interface {
-    width: 100%;
+.property-holder h4 {
     flex-grow: 1;
+}
+
+.sell {
+    box-sizing: border-box;
+    background-color: red;
+    border-radius: .25em;
+    border: none;
+    width: calc(100% - .4em);
+    padding: .2em;
+    margin: .2em;
+    color: white;
+    flex-grow: 0;
+    cursor: pointer;
+}
+
+.prop-left {
+    width: .5em;
+    height: 100%;
+}
+
+#monopoly-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
