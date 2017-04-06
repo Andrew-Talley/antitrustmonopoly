@@ -51,31 +51,24 @@ menuApp.controller('appController', function ($scope, $http) {
     }
 
     /** App Methods **/
-    $scope.setCompanyOrder = function (index) {
-        var cur = $scope.currentPlayer;
-        var player = $scope.players[cur];
-        var ent = player.companies[parseInt(index)];
-        for (var i = 0; i < ent.directOwnership.length; i++) {
-            var subEnt = player.companies[ent.directOwnership[i]];
-            console.log(subEnt);
+    $scope.setCompanyOrder = function (entity) {
+        for (var i = 0; i < entity.directOwnership.length; i++) {
+            var subEnt = entity.directOwnership[i];
             if (!subEnt.isProperty) {
-                if (subEnt.level <= ent.level) {
-                    var x = $scope.players[cur].companies[index].level = ent.level + 1;
+                if (subEnt.level <= entity.level) {
+                    var x = $scope.players[cur].companies[index].level = entity.level + 1;
                     $scope.players[cur].maxLevel = Math.max(player.maxLevel, x);
-                    console.log(x);
                 }
-                $scope.setCompanyOrder(ent.directOwnership[i]);
+                $scope.setCompanyOrder(entity.directOwnership[i]);
             }
         }
     }
     $scope.setAllCompaniesOrder = function () {
         var player = $scope.players[$scope.currentPlayer];
         for (var i = 0; i < player.directOwnership.length; i++) {
-            var ind = player.directOwnership[i];
-            $scope.setCompanyOrder(ind);
-            $scope.players[$scope.currentPlayer].maxLevel = Math.max(player.maxLevel, player.companies[ind].level);
+            $scope.setCompanyOrder(player.directOwnership[i]);
+            $scope.players[$scope.currentPlayer].maxLevel = Math.max(player.maxLevel, player.directOwnership[i].level);
         }
-        console.log($scope.players[$scope.currentPlayer]);
     }
     $scope.setMonopolies = function () {
         var properties = $scope.players[$scope.currentPlayer].properties;
@@ -110,7 +103,7 @@ menuApp.controller('appController', function ($scope, $http) {
             'isProperty': false
         };
         $scope.players[curPl].companies.push(newComp);
-        $scope.players[curPl].directOwnership.push($scope.players[curPl].companies.length - 1);
+        $scope.players[curPl].directOwnership.push(newComp);
         $scope.players[curPl].companyNumber += 1;
         $scope.setAllCompaniesOrder();
     }
@@ -157,9 +150,16 @@ menuApp.controller('appController', function ($scope, $http) {
             $('.active-company').removeClass('active-company');
         }    
     }
+    $scope.backTooltip = function (event) {
+        var parent = $(event.target).parent().removeClass('active');
+        parent.parent().children('.first').addClass('active');
+    }
     $scope.sever = function (event) {
         var parent = $(event.target).parent().removeClass('active');
         parent.parent().children('.choose').addClass('active');
+    }
+    $scope.addOwner = function (event) {
+        
     }
     $scope.iterateOver = function (num) {
         return new Array(num);
@@ -170,15 +170,42 @@ function updateCanvas() {
     var allHolders = $('.property-holder');
 }
 
-function explorePath(index, element, companies) {
-    
+function explorePath(item, company) {
+    if (item.isProperty) return true;
+    if (item === company) return false;
+    for (var i = 0; i < item.directOwnership.length; i++) {
+        if (!explorePath(item.directOwnership[i])) return false;
+    }
+    return true;
 }
 
-menuApp.filter('descendentsInclude', function () {
-    return function (items, element, companies) {
-        var out = [];
-        angular.forEach(items, function (item, element, companies) {
-            out.push(explorePath(item, element, companies));
+/**
+ * Recursively check for one company owning a second
+ * @param {JSON} testCompany - The company to check
+ * @param {JSON} keyCompany - The company to check is included
+ */
+function descendentsInclude(testCompany, keyCompany) {
+    if (testCompany === keyCompany) return true;
+    if (testCompany.isProperty || testCompany.directOwnership.length == 0) return false;
+    return array.some(function(subCompany) {
+        return descendentsInclude(subCompany, keyCompany);
+    });
+}
+
+menuApp.filter('descendentsExclude', function () {
+    return function (companies, input) {
+        return companies.filter(function (company) {
+            return !descendentsInclude(company, input);
+        });
+    };
+});
+
+menuApp.filter('directlyOwns', function () {
+    return function (companies, keyCompany) {
+        return companies.filter(function (company) {
+            return company.directOwnership.some(function (subCompany) {
+                return subCompany === keyCompany;
+            })
         });
     }
-})
+});

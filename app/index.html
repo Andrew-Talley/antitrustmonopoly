@@ -5,16 +5,18 @@
         <link rel="stylesheet" href="style/menu.css" />
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
         <link rel="stylesheet" href="style/game.css" />
+        <link rel="stylesheet" href="tippy/tippy.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
         <script src="https://use.fontawesome.com/a59db19925.js"></script>
+        <script src="tippy/tippy.js"></script>
     </head>
     <body>
         <div class="container" 
             ng-app="app" 
             ng-controller="appController"
             ng-click="deactivateCompany($event)">
-            <div class="menu-container">
+            <section class="menu-container">
                 <div class="board-options">
                     <h1>Choose board:</h1>
                     <div class="selection-array">
@@ -28,16 +30,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="final-setup">
+            </section>
+                <section class="final-setup">
                     <h1>Take a final look</h1>
-                    <h2></h2>
                     <div class="menu-property-group" 
                         ng-repeat="group in groups">
                         <div class="left" 
                             ng-style="group.style" 
                             ng-click="leftClicked($event)">
                             <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
-                        </div>
+                        </section>
                         <div class="all-properties">
                             <div class="property" ng-repeat="property in group.properties">
                                 <input class="name" ng-model="property.name" />
@@ -147,18 +149,27 @@
                                                 <button ng-click="sever($event)">Sever Ownership</button>
                                                 <button ng-click="addOwner($event)">Add Owner...</button>
                                             </div>
-                                            <div class="message choose">
+                                            <div class="message sever">
+                                                <button class="auto-width" ng-click="backTooltip($event)">Back</button>
                                                 <h3>Choose Company</h3>
                                                 <div class="choose-all-companies">
                                                     <div class="company-decision" 
                                                         ng-repeat="subComp in players[currentPlayer].companies 
-                                                        | filter: {'name': '!' + comp}">
+                                                        | directlyOwns: comp">
                                                         {{ subComp.name }}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="message sever">
-                                                
+                                            <div class="message choose">
+                                                <button class="auto-width" ng-click="backTooltip($event)">Back</button>
+                                                <h3>Choose Company</h3>
+                                                <div class="choose-all-companies">
+                                                    <div class="company-decision" 
+                                                        ng-repeat="subComp in players[currentPlayer].companies 
+                                                        | descendentsExclude: comp">
+                                                        {{ subComp.name }}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
