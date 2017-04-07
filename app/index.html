@@ -15,8 +15,8 @@
         <div class="container" 
             ng-app="app" 
             ng-controller="appController"
-            ng-click="deactivateCompany($event)">
-            <section class="menu-container">
+            ng-click="deactivateTooltip($event)">
+            <div class="menu-container">
                 <div class="board-options">
                     <h1>Choose board:</h1>
                     <div class="selection-array">
@@ -30,8 +30,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
-                <section class="final-setup">
+                <div class="final-setup">
                     <h1>Take a final look</h1>
                     <div class="menu-property-group" 
                         ng-repeat="group in groups">
@@ -39,7 +38,7 @@
                             ng-style="group.style" 
                             ng-click="leftClicked($event)">
                             <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
-                        </section>
+                        </div>
                         <div class="all-properties">
                             <div class="property" ng-repeat="property in group.properties">
                                 <input class="name" ng-model="property.name" />
@@ -135,39 +134,41 @@
                                 <h3> {{ players[currentPlayer].name }} </h3>
                             </div>
                             <div class="company-row" 
-                                ng-repeat="i in iterateOver(players[currentPlayer].maxLevel) track by $index" 
-                                ng-click="activateCompany($event)">
+                                ng-repeat="i in iterateOver(players[currentPlayer].maxLevel) track by $index" >
                                 <div class="company" 
                                     ng-repeat="comp in players[currentPlayer].companies 
-                                    | filter: {'level': ($index + 1)} ">
+                                    | filter: {'level': ($index + 1)} "
+                                    ng-click="activateCompany($event)">
                                     {{ comp.name }}
                                     <div class="tooltip">
                                         <div class="pointy"></div>
                                         <div class="message-container">
                                             <div class="message first active">
                                                 <input ng-model="comp.name" />
-                                                <button ng-click="sever($event)">Sever Ownership</button>
-                                                <button ng-click="addOwner($event)">Add Owner...</button>
+                                                <button ng-click="severOwners($event)">Sever Owner</button>
+                                                <button ng-click="addOwners($event)">Add Owner</button>
                                             </div>
                                             <div class="message sever">
                                                 <button class="auto-width" ng-click="backTooltip($event)">Back</button>
-                                                <h3>Choose Company</h3>
+                                                <h3>Sever Owner</h3>
                                                 <div class="choose-all-companies">
                                                     <div class="company-decision" 
-                                                        ng-repeat="subComp in players[currentPlayer].companies 
-                                                        | directlyOwns: comp">
-                                                        {{ subComp.name }}
+                                                        ng-repeat="owner in players[currentPlayer].companies 
+                                                        | directlyOwns: comp | orderBy: owner.name"
+                                                        ng-click="sever(owner, comp)">
+                                                        {{ owner.name }}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="message choose">
+                                            <div class="message add">
                                                 <button class="auto-width" ng-click="backTooltip($event)">Back</button>
                                                 <h3>Choose Company</h3>
                                                 <div class="choose-all-companies">
                                                     <div class="company-decision" 
-                                                        ng-repeat="subComp in players[currentPlayer].companies 
-                                                        | descendentsExclude: comp">
-                                                        {{ subComp.name }}
+                                                        ng-repeat="newOwner in players[currentPlayer].companies 
+                                                        | notDirectlyOwnedBy: comp | doesNotOwn: comp | orderBy: subComp.name"
+                                                        ng-click="addOwner(newOwner, comp)">
+                                                        {{ newOwner.name }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -179,12 +180,45 @@
                                 <div class="property-group" 
                                     ng-repeat="group in players[currentPlayer].monopolies">
                                     <div class="property" 
-                                        ng-repeat="prop in group.properties 
-                                        | orderBy:['propInd']">
+                                        ng-repeat="prop in group.properties | orderBy:['propInd']"
+                                            ng-click="activateProperty($event)">
                                         <div class="property-holder"
                                             ng-attr-style="border-top: 1.5em solid {{groups[group.order].style['background-color'] }}">
                                             <h4 align="center"> {{ groups[prop.groupInd].properties[prop.propInd].short }} </h4>
-                                            <button class="sell" ng-click="sellProperty(prop)">Sell</button>
+                                        </div>
+                                        <div class="tooltip top">
+                                            <div class="message-container">
+                                                <div class="message first active">
+                                                    <h4>{{ groups[prop.groupInd].properties[prop.propInd].name }}</h4>
+                                                    <button ng-click="severOwners($event)">Sever Owner</button>
+                                                    <button ng-click="addOwners($event)">Add Owner</button>
+                                                </div>
+                                                <div class="message sever">
+                                                    <button class="auto-width" ng-click="backTooltip($event)">Back</button>
+                                                    <h3>Sever Owner</h3>
+                                                    <div class="choose-all-companies">
+                                                        <div class="company-decision" 
+                                                            ng-repeat="owner in players[currentPlayer].companies 
+                                                            | directlyOwns: comp | orderBy: owner.name"
+                                                            ng-click="sever(owner, comp)">
+                                                            {{ owner.name }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="message add">
+                                                    <button class="auto-width" ng-click="backTooltip($event)">Back</button>
+                                                    <h3>Choose Company</h3>
+                                                    <div class="choose-all-companies">
+                                                        <div class="company-decision" 
+                                                            ng-repeat="newOwner in players[currentPlayer].companies 
+                                                            | notDirectlyOwnedBy: comp | orderBy: subComp.name"
+                                                            ng-click="addOwner(newOwner, comp)">
+                                                            {{ newOwner.name }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pointy"></div>
                                         </div>
                                     </div>
                                 </div>
