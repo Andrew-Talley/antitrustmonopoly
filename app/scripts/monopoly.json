@@ -1,220 +1,197 @@
-{ 
-    "propertyGroups": [
+{
+  "propertyGroups": [
+    {
+      "color": "rgba(131,65,38, 1)",
+      "properties": [
         {
-            "style": {
-                "background-color": "rgba(131,65,38, 1)"
-            },
-            "isReady": false,
-            "properties": [
-                {
-                    "name": "Mediterranean Avenue",
-                    "short": "Med. Ave",
-                    "value": 60,
-                    "owned": false
-                },
-                {
-                    "name": "Baltic Avenue",
-                    "short": "Baltic Ave",
-                    "value": 60,
-                    "owned": false
-                }
-            ]
-        }, {
-            "style": {
-                "background-color": "rgba(153,216,250, 1)"
-            },
-            "isReady": false,
-            "properties":[
-                {
-                    "name": "Oriental Avenue",
-                    "short": "Oriental Ave",
-                    "value": 100,
-                    "owned": false
-                }, {
-                    "name": "Vermont Avenue",
-                    "short": "VT Ave",
-                    "value": 100,
-                    "owned": false
-                }, {
-                    "name": "Connecticut Avenue",
-                    "short": "CT Ave",
-                    "value": 120,
-                    "owned": false
-                }
-            ]
-        }, {
-            "style": {
-                "background-color": "rgba(208,22,133, 1)"
-            },
-            "isReady": false,
-            "properties":[
-                {
-                    "name": "St. Charles Place",
-                    "short": "St. Charles Pl",
-                    "value": 140,
-                    "owned": false
-                }, {
-                    "name": "States Avenue",
-                    "short": "States Ave",
-                    "value": 140,
-                    "owned": false
-                }, {
-                    "name": "Virginia Avenue",
-                    "short": "VA Ave",
-                    "value": 160,
-                    "owned": false
-                }
-            ]
-        }, {
-            "style": {
-                "background-color": "rgba(245,130,0, 1)"
-            },
-            "isReady": false,
-            "properties":[
-                {
-                    "name": "St. James Place",
-                    "short": "St. James Pl",
-                    "value": 180,
-                    "owned": false
-                }, {
-                    "name": "Tennessee Avenue",
-                    "short": "TN Ave",
-                    "value": 180,
-                    "owned": false
-                }, {
-                    "name": "New York Avenue",
-                    "short": "NY Ave",
-                    "value": 200,
-                    "owned": false
-                }
-            ]
-        }, {
-            "style": {
-                "background-color": "rgba(233,0,19, 1)"
-            },
-            "isReady": false,
-            "properties":[
-                {
-                    "name": "Kentucky Avenue",
-                    "short": "KY Ave",
-                    "value": 220,
-                    "owned": false
-                }, {
-                    "name": "Indiana Avenue",
-                    "short": "IN Ave",
-                    "value": 220,
-                    "owned": false
-                }, {
-                    "name": "Illinois Avenue",
-                    "short": "IL Ave",
-                    "value": 240,
-                    "owned": false
-                }
-            ]
-        }, {
-            "style": {
-                "background-color": "rgba(254,246,0, 1)"
-            },
-            "isReady": false,
-            "properties": [
-                {
-                    "name": "Atlantic Avenue",
-                    "short": "Atlantic Ave",
-                    "value": 260,
-                    "owned": false
-                }, {
-                    "name": "Ventnor Avenue",
-                    "short": "Ventor Ave",
-                    "value": 260,
-                    "owned": false
-                }, {
-                    "name": "Marvin Gardens",
-                    "short": "Marvin Gardens",
-                    "value": 280,
-                    "owned": false
-                }
-            ]
-        }, {
-            "style": {
-                "background-color": "rgba(25,169,68, 1)"
-            },
-            "isReady": false,
-            "properties": [
-                {
-                    "name": "Pacific Avenue",
-                    "short": "Pacific Ave",
-                    "value": 300,
-                    "owned": false
-                }, {
-                    "name": "North Carolina Avenue",
-                    "short": "NC Ave",
-                    "value": 300,
-                    "owned": false
-                }, {
-                    "name": "Pennsylvania Avenue",
-                    "short": "PA Ave",
-                    "value": 320,
-                    "owned": false
-                }
-            ]
-        }, {
-            "style": {
-                "background-color": "rgba(0,90,176, 1)"
-            },
-            "isReady": false,
-            "properties":[
-                {
-                    "name": "Park Place",
-                    "short": "Park Pl",
-                    "value": 350,
-                    "owned": false
-                }, {
-                    "name": "Boardwalk",
-                    "short": "BW",
-                    "value": 400,
-                    "owned": false
-                }
-            ]
+          "name": "Mediterranean Avenue",
+          "short": "Med. Ave",
+          "value": 60
+        },
+        {
+          "name": "Baltic Avenue",
+          "short": "Baltic Ave",
+          "value": 60
         }
-    ],
-    "gameSettings": {
-        "accountingFee": 2,
-        "companyPurchase": 100,
-        "ownershipChange": 75
+      ]
     },
-    "players": [
+    {
+      "color": "rgba(153,216,250, 1)",
+      "properties": [
         {
-            "name": "Player 1",
-            "properties": {},
-            "monopolies": {},
-            "companies": [],
-            "directOwnership": [],
-            "maxLevel": 0,
-            "companyNumber": 1
-        },{
-            "name": "Player 2",
-            "properties": {},
-            "monopolies": {},
-            "companies": [],
-            "directOwnership": [],
-            "maxLevel": 0,
-            "companyNumber": 1
-        }, {
-            "name": "Player 3",
-            "properties": {},
-            "monopolies": {},
-            "companies": [],
-            "directOwnership": [],
-            "maxLevel": 0,
-            "companyNumber": 1
-        }, {
-            "name": "Player 4",
-            "properties": {},
-            "monopolies": {},
-            "companies": [],
-            "directOwnership": [],
-            "maxLevel": 0,
-            "companyNumber": 1
+          "name": "Oriental Avenue",
+          "short": "Oriental Ave",
+          "value": 100
+        },
+        {
+          "name": "Vermont Avenue",
+          "short": "VT Ave",
+          "value": 100
+        },
+        {
+          "name": "Connecticut Avenue",
+          "short": "CT Ave",
+          "value": 120
         }
-    ]
+      ]
+    },
+    {
+      "color": "rgba(208,22,133, 1)",
+      "properties": [
+        {
+          "name": "St. Charles Place",
+          "short": "St. Charles Pl",
+          "value": 140
+        },
+        {
+          "name": "States Avenue",
+          "short": "States Ave",
+          "value": 140
+        },
+        {
+          "name": "Virginia Avenue",
+          "short": "VA Ave",
+          "value": 160
+        }
+      ]
+    },
+    {
+      "color": "rgba(245,130,0, 1)",
+      "properties": [
+        {
+          "name": "St. James Place",
+          "short": "St. James Pl",
+          "value": 180
+        },
+        {
+          "name": "Tennessee Avenue",
+          "short": "TN Ave",
+          "value": 180
+        },
+        {
+          "name": "New York Avenue",
+          "short": "NY Ave",
+          "value": 200
+        }
+      ]
+    },
+    {
+      "color": "rgba(233,0,19, 1)",
+      "properties": [
+        {
+          "name": "Kentucky Avenue",
+          "short": "KY Ave",
+          "value": 220
+        },
+        {
+          "name": "Indiana Avenue",
+          "short": "IN Ave",
+          "value": 220
+        },
+        {
+          "name": "Illinois Avenue",
+          "short": "IL Ave",
+          "value": 240
+        }
+      ]
+    },
+    {
+      "color": "rgba(254,246,0, 1)",
+      "properties": [
+        {
+          "name": "Atlantic Avenue",
+          "short": "Atlantic Ave",
+          "value": 260
+        },
+        {
+          "name": "Ventnor Avenue",
+          "short": "Ventor Ave",
+          "value": 260
+        },
+        {
+          "name": "Marvin Gardens",
+          "short": "Marvin Gardens",
+          "value": 280
+        }
+      ]
+    },
+    {
+      "color": "rgba(25,169,68, 1)",
+      "properties": [
+        {
+          "name": "Pacific Avenue",
+          "short": "Pacific Ave",
+          "value": 300
+        },
+        {
+          "name": "North Carolina Avenue",
+          "short": "NC Ave",
+          "value": 300
+        },
+        {
+          "name": "Pennsylvania Avenue",
+          "short": "PA Ave",
+          "value": 320
+        }
+      ]
+    },
+    {
+      "color": "rgba(0,90,176, 1)",
+      "properties": [
+        {
+          "name": "Park Place",
+          "short": "Park Pl",
+          "value": 350
+        },
+        {
+          "name": "Boardwalk",
+          "short": "BW",
+          "value": 400
+        }
+      ]
+    }
+  ],
+  "gameSettings": {
+    "accountingFee": 2,
+    "companyPurchase": 100,
+    "ownershipChange": 75
+  },
+  "players": [
+    {
+      "name": "Player 1",
+      "properties": {},
+      "monopolies": {},
+      "companies": [],
+      "directOwnership": [],
+      "maxLevel": 0,
+      "companyNumber": 1
+    },
+    {
+      "name": "Player 2",
+      "properties": {},
+      "monopolies": {},
+      "companies": [],
+      "directOwnership": [],
+      "maxLevel": 0,
+      "companyNumber": 1
+    },
+    {
+      "name": "Player 3",
+      "properties": {},
+      "monopolies": {},
+      "companies": [],
+      "directOwnership": [],
+      "maxLevel": 0,
+      "companyNumber": 1
+    },
+    {
+      "name": "Player 4",
+      "properties": {},
+      "monopolies": {},
+      "companies": [],
+      "directOwnership": [],
+      "maxLevel": 0,
+      "companyNumber": 1
+    }
+  ]
 }

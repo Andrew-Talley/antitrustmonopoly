@@ -39,7 +39,7 @@
       <div class="menu-container final-container">
         <h1>Take a final look</h1>
         <div class="menu-property-group" ng-repeat="group in groups">
-          <div class="left" ng-style="group.style" ng-click="leftClicked($event)">
+          <div class="left" ng-attr-style="background-color:{{group.color}}" ng-click="leftClicked($event)">
             <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
           </div>
           <div class="all-properties">
@@ -52,7 +52,7 @@
             </div>
             <button class="property" ng-click="addProp($index)">Add Property</but>
           </div>
-          <input type="color" ng-model="group.style['background-color']" />
+          <input type="color" ng-model="group.color" />
         </div>
         <button class="menu-property-group" ng-click="addPropGroup()">Add Property Group</button>
         <h2>Settings</h2>
@@ -93,7 +93,7 @@
             <h4>Buy Property <span class="fa">&#xf107;</span> </h4>
             <div class="expanded-menu">
               <div ng-repeat="group in groups">
-                <div ng-repeat="prop in group.properties | filter:{'owned': false}" ng-attr-style="border-left:.5em solid {{group.style['background-color']}}" ng-click="addPropertyToPlayer(prop)">
+                <div ng-repeat="prop in group.properties | filter:{'owned': false}" ng-attr-style="border-left:.5em solid {{group.color}}" ng-click="addPropertyToPlayer(prop)">
                   <div class="sub-bar-item"> {{ prop.name }}</div>
                 </div>
               </div>
@@ -109,7 +109,7 @@
         <div class="player-properties">
           <div class="non-monopoly">
             <ul>
-              <div class="non-monopoly-group" ng-repeat="group in currentPlayer.properties" ng-attr-style="border-left: 20px solid {{ groups[group.order].style['background-color'] }}" ng-class="groups[group.order].isReady ? 'ready' : ''" ng-style="{'background-color': {true: groups[group.order].style['background-color'].slice(0,-2) + '.5)',false:'transparent'} [groups[group.order].isReady == true]}" ng-click="addMonopolyGroup(group)">
+              <div class="non-monopoly-group" ng-repeat="group in currentPlayer.properties" ng-attr-style="border-left: 20px solid {{ groups[group.order].color }}" ng-class="groups[group.order].isReady ? 'ready' : ''" ng-style="{'background-color': {true: groups[group.order].color.slice(0,-2) + '.5)',false:'transparent'} [groups[group.order].isReady == true]}" ng-click="addMonopolyGroup(group)">
                 <li class="non-monopoly-prop" ng-repeat="prop in group.properties | orderBy: ['propInd']">
                   {{groups[prop.groupInd].properties[prop.propInd].name}}
                 </li>
@@ -159,7 +159,7 @@
               <div class="player-monopolies company-row">
                 <div class="property-group" ng-repeat="group in currentPlayer.monopolies" update-canvas-after>
                   <div class="property" ng-repeat="prop in group.properties | orderBy:['propInd']" ng-click="activateProperty($event)">
-                    <div class="property-holder"ng-attr-style="border-top: 1.5em solid {{groups[group.order].style['background-color'] }}" ng-attr-id="property-{{group.order}}-{{prop.propInd}}">
+                    <div class="property-holder"ng-attr-style="border-top: 1.5em solid {{groups[group.order].color }}" ng-attr-id="property-{{group.order}}-{{prop.propInd}}">
                       <h4 align="center">{{groups[prop.groupInd].properties[prop.propInd].short}} </h4>
                     </div>
                     <div class="tooltip top">
