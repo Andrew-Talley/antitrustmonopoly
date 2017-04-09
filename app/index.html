@@ -16,7 +16,15 @@
   <body>
     <div class="container" ng-app="app" ng-controller="appController" ng-click="deactivateTooltip($event)" resize>
       <div class="menu-container board-options">
-        
+        <h1>Choose board:</h1>
+        <div class="selection-array">
+          <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in allOptions">
+          <div class="img-box">
+            <img ng-src="{{ opt.image }}" />
+          </div>
+          <h2>{{ opt.text}}</h2>
+          </div>
+        </div>
       </div>
       <div class="menu-container final-container">
         <h1>Take a final look</h1>

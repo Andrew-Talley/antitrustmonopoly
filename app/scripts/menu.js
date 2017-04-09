@@ -11,11 +11,13 @@ app.controller('appController', function ($scope, $http) {
     $scope.settings = {};
     $scope.currentPlayer = {};
     $scope.players = [];
-    $http.get('')
-    $http.get('https://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
-        $scope.allOptions = response;
+    $http.get('http://www.antitrustmonopoly.com/app/pages/board-options.html').success(function (response) {
+        $('.board-options').html(response);
+        $http.get('http://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
+            $scope.allOptions = response;
+        });
     });
-    $http.get('https://www.antitrustmonopoly.com/app/scripts/monopoly.json').success(function (response) {
+    $http.get('http://www.antitrustmonopoly.com/app/scripts/monopoly.json').success(function (response) {
         $scope.groups = response.propertyGroups;
         groups = response.propertyGroups;
         $scope.settings = response.gameSettings;
