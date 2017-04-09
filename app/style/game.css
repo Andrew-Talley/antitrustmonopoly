@@ -187,6 +187,8 @@
     padding: .25em;
     cursor: pointer;
     transition: .25s;
+    z-index: 2;
+    background-color: #fff;
 }
 
 .company:hover {
@@ -198,7 +200,7 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    width: 200px;
+    transform: translateX(-50%);
     opacity: 0;
     transition: .25s;
     pointer-events: none;

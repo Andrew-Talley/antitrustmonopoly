@@ -3,7 +3,7 @@ menuApp.controller('appController', function ($scope, $http) {
     $scope.allOptions = [];
     $scope.groups = [];
     $scope.settings = {};
-    $scope.currentPlayer = 0;
+    $scope.currentPlayer = {};
     $scope.players = [];
     $http.get('https://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
         $scope.allOptions = response;
@@ -13,7 +13,10 @@ menuApp.controller('appController', function ($scope, $http) {
         groups = response.propertyGroups;
         $scope.settings = response.gameSettings;
         $scope.players = response.players;
-        players = response.players;
+        $scope.currentPlayer = response.players[0];
+        for (pl of $scope.players) {
+            pl.companies.push(pl);
+        }
     });
     $scope.addProp = function (index) {
         $scope.groups[index].properties.push({ "name": "", "value": 0 });
@@ -52,33 +55,33 @@ menuApp.controller('appController', function ($scope, $http) {
 
     /** App Methods **/
     $scope.setCompanyOrder = function (entity) {
-        var cur = $scope.currentPlayer;
-        for (var i = 0; i < entity.directOwnership.length; i++) {
-            var subEnt = entity.directOwnership[i];
-            if (!subEnt.isProperty) {
-                if (subEnt.level <= entity.level) {
-                    subEnt.level = entity.level + 1;
-                    $scope.players[cur].maxLevel = Math.max($scope.players[cur].maxLevel, subEnt.level);
+        if (!entity.isProperty) {
+            for (var i = 0; i < entity.directOwnership.length; i++) {
+                var subEnt = entity.directOwnership[i];
+                if (!subEnt.isProperty) {
+                    if (subEnt.level <= entity.level) {
+                        subEnt.level = entity.level + 1;
+                        $scope.currentPlayer.maxLevel = Math.max($scope.currentPlayer.maxLevel, subEnt.level);
+                    }
+                    $scope.setCompanyOrder(entity.directOwnership[i]);
                 }
-                $scope.setCompanyOrder(entity.directOwnership[i]);
             }
-        }
+        }    
     }
     $scope.setAllCompaniesOrder = function () {
-        var player = $scope.players[$scope.currentPlayer];
+        var player = $scope.currentPlayer;
         player.maxLevel = 1;
         player.directOwnership.forEach(function(comp) {
             comp.level = 1;
         });
         for (var i = 0; i < player.directOwnership.length; i++) {
             $scope.setCompanyOrder(player.directOwnership[i]);
-            $scope.players[$scope.currentPlayer].maxLevel = Math.max(player.maxLevel, player.directOwnership[i].level);
+            $scope.currentPlayer.maxLevel = Math.max(player.maxLevel, player.directOwnership[i].level);
         }
-        console.log($scope.players[$scope.currentPlayer]);
     }
     $scope.setMonopolies = function () {
-        var properties = $scope.players[$scope.currentPlayer].properties;
-        var monopolies = $scope.players[$scope.currentPlayer].monopolies;
+        var properties = $scope.currentPlayer.properties;
+        var monopolies = $scope.currentPlayer.monopolies;
         for (var i in properties) {
             if (groups[properties[i].properties[0].groupInd].properties.length == properties[i].properties.length) {
                 groups[properties[i].properties[0].groupInd].isReady = true;
@@ -86,46 +89,46 @@ menuApp.controller('appController', function ($scope, $http) {
         }
         for (var j in monopolies) {
             if (groups[monopolies[j].properties[0].groupInd].properties.length != monopolies[j].properties.length) {
-                $scope.players[$scope.currentPlayer].properties[j] = monopolies[j];
-                delete $scope.players[$scope.currentPlayer].monopolies[j];
+                $scope.currentPlayer.properties[j] = monopolies[j];
+                delete $scope.currentPlayer.monopolies[j];
             }
         }
     }
     $scope.addMonopolyGroup = function (group) {
         if ($scope.groups[group.order].isReady) {
-            $scope.players[$scope.currentPlayer].monopolies[group.order] = group;
-            delete $scope.players[$scope.currentPlayer].properties[group.order];
+            $scope.currentPlayer.monopolies[group.order] = group;
+            delete $scope.currentPlayer.properties[group.order];
         }
     }
     $scope.sellProperty = function (property) {
         $scope.monopolies;
     }
     $scope.addCompanyToPlayer = function () {
-        var curPl = $scope.currentPlayer;
+        curPl = $scope.currentPlayer;
         var newComp = {
-            'name': 'C' + $scope.players[curPl].companyNumber,
+            'name': 'C' + curPl.companyNumber,
             'level': 1,
             'directOwnership': [],
             'isProperty': false
         };
-        $scope.players[curPl].companies.push(newComp);
-        $scope.players[curPl].directOwnership.push(newComp);
-        $scope.players[curPl].companyNumber += 1;
-        console.log($scope.players[curPl]);
+        $scope.currentPlayer.companies.push(newComp);
+        $scope.currentPlayer.directOwnership.push(newComp);
+        $scope.currentPlayer.companyNumber += 1;
         $scope.setAllCompaniesOrder();
+        $scope.updateCanvas();
     }
+    
     $scope.addPropertyToPlayer = function (property) {
         var groupInd = 0;
         var propInd = 0;
         var done = false;
         for (var i = 0; i < $scope.groups.length && !done; i++) {
-            for (var j = 0; j < $scope.groups[i].properties.length; j++) {
-                if (property === $scope.groups[i].properties[j]) {
-                    groupInd = i;
-                    propInd = j;
-                    done = true;
-                    break;
-                }
+            var subIndex = $scope.groups[i].properties.indexOf(property);
+            if (propInd != -1) {
+                groupInd = i;
+                propInd = subIndex;
+                done = true;
+                break;
             }
         }
         var newProp = {
@@ -133,17 +136,20 @@ menuApp.controller('appController', function ($scope, $http) {
             'propInd': propInd,
             'isProperty': true
         }
-        if (typeof $scope.players[$scope.currentPlayer].properties[groupInd] === 'undefined') {
-            $scope.players[$scope.currentPlayer].properties[groupInd] = { 'order': groupInd, properties: [] };
+        if (typeof $scope.currentPlayer.properties[groupInd] === 'undefined') {
+            $scope.currentPlayer.properties[groupInd] = { 'order': groupInd, properties: [] };
         }
-        $scope.players[$scope.currentPlayer].properties[groupInd].properties.push(newProp);
+        $scope.currentPlayer.properties[groupInd].properties.push(newProp);
+        $scope.currentPlayer.directOwnership.push(newProp);
         $scope.groups[groupInd].properties[propInd].owned = true;
-
         $scope.setMonopolies();
+        $scope.updateCanvas();
     }
+    
     $scope.nextPlayer = function () {
-        $scope.currentPlayer += 1;
-        if ($scope.currentPlayer >= $scope.players.length) $scope.currentPlayer = 0;
+        var ind = $scope.players.indexOf($scope.currentPlayer);
+        ind = (ind == $scope.players.length ? 0 : ind);
+        $scope.currentPlayer = $scope.players[ind];
     }
     $scope.startGame = function () {
         $scope.groups = $scope.groupInd;
@@ -174,28 +180,76 @@ menuApp.controller('appController', function ($scope, $http) {
         var parent = $(event.target).parent().removeClass('active');
         parent.parent().children('.add').addClass('active');
     }
+    $scope.treeUpdated = function () {
+        $scope.setAllCompaniesOrder();
+        $scope.updateCanvas();
+        var active = $('.active-tooltip').removeClass('active-tooltip');
+        active.children('.active').removeClass('active');
+        active.children('.add').addClass('active');
+    }
     $scope.sever = function (owner, subsidiary) {
         var index = owner.directOwnership.indexOf(subsidiary);
         if (index != -1) owner.directOwnership.splice(index, 1);
-        console.log(owner.directOwnership);
-        $scope.setAllCompaniesOrder();
+        $scope.treeUpdated();
     }
     $scope.addOwner = function (newOwner, newSubsidiary) {
-        if (newOwner.directOwnership.indexOf(newSubsidiary) == -1) {
-            newOwner.directOwnership.push(newSubsidiary);
-            $scope.setAllCompaniesOrder();
+        newOwner.directOwnership.push(newSubsidiary);
+        $scope.treeUpdated();
+    }
+
+    $scope.updateCanvas = function () {
+        canvas.width = canvas.scrollWidth;
+        canvas.height = canvas.scrollHeight;
+        canvasContext.clearRect(0, 0, $canvas.width, $canvas.width);
+        // $scope.updateCompanyEntity($scope.currentPlayer);
+        for (company of $scope.currentPlayer.companies) {
+            $scope.updateCompanyEntity(company);
         }
     }
 
+    $scope.updateCompanyEntity = function (company) {
+        compInd = $scope.currentPlayer.companies.indexOf(company);
+        compPos = getCenterPositionInCanvas($('#company-' + compInd), false);
+        for (const subComp of company.directOwnership) {
+            var subPos;
+            if (subComp.isProperty) {
+                subPos = getCenterPositionInCanvas($('#property-' + subComp.groupInd + '-' + subComp.propInd), true);
+            } else {
+                var subCompInd = $scope.currentPlayer.companies.indexOf(subComp);
+                subPos = getCenterPositionInCanvas($('#company-' + subCompInd), true);
+            }
+            canvasContext.beginPath();
+            canvasContext.moveTo(compPos.x, compPos.y);
+            canvasContext.lineTo(subPos.x, subPos.y);
+            canvasContext.stroke();
+            console.log(compPos);
+            console.log(subPos);
+        }
+    }
 
     $scope.iterateOver = function (num) {
         return new Array(num);
     }
 });
 
-function updateCanvas() {
-    var allHolders = $('.property-holder');
+/**
+ * Gets the position of the center of the element
+ * @param {DOM} : jQuery object
+ * @param {Boolean} top - True if need index of the top of the box, false if the bottom
+ * @return {JSON} x: x position in canvas, y: y position in canvas
+ */
+function getCenterPositionInCanvas(elem, top = true) {
+    const canvasOffset = $canvas.offset();
+    const elemOffset = elem.offset();
+    var val = { x: elemOffset.left - canvasOffset.left, y: elemOffset.top - canvasOffset.top };
+    val.x += elem.outerWidth() / 2;
+    if (!top) val.y += elem.outerHeight();
+    return val;
 }
+
+var canvas = document.getElementById('monopoly-canvas');
+var $canvas = $(canvas);
+var canvasContext = canvas.getContext('2d');
 
 function explorePath(item, company) {
     if (item.isProperty) return true;
@@ -246,3 +300,11 @@ menuApp.filter('directlyOwns', function () {
         });
     }
 });
+
+menuApp.directive('update-canvas-after', function () {
+    return function ($scope, element, attrs) {
+        if ($scope.$last) {
+            $scope.updateCanvas();
+        }
+    }
+})
