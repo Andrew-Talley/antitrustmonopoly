@@ -11,11 +11,8 @@ app.controller('appController', function ($scope, $http) {
     $scope.settings = {};
     $scope.currentPlayer = {};
     $scope.players = [];
-    $http.get('http://www.antitrustmonopoly.com/app/pages/board-options.html').success(function (response) {
-        $('.board-options').html(response);
-        $http.get('http://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
-            $scope.allOptions = response;
-        });
+    $http.get('http://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
+        $scope.allOptions = response;
     });
     $http.get('http://www.antitrustmonopoly.com/app/scripts/monopoly.json').success(function (response) {
         $scope.groups = response.propertyGroups;
@@ -48,13 +45,13 @@ app.controller('appController', function ($scope, $http) {
     }
     $scope.menuOptionClick = function (event, option) {
         var url = "";
-        if (option.text == 'Monopoly (post-2008)') {
+        // if (option.text == 'Monopoly (post-2008)') {
             url = "https://www.antitrustmonopoly.com/app/scripts/monopoly.json";
-        } else if (option.text == "Classic Monopoly (pre-2008)") {
+        /* } else if (option.text == "Classic Monopoly (pre-2008)") {
             url = "https://www.antitrustmonopoly.com/app/scripts/classic-monopoly.json";
         } else {
 
-        }
+        }*/
         $http.get(url).success(function (response) {
             $scope.groups = response.propertyGroups;
             $scope.settings = response.gameSettings;

@@ -19,17 +19,26 @@
         <h1>Choose board:</h1>
         <div class="selection-array">
           <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in allOptions">
-          <div class="img-box">
-            <img ng-src="{{ opt.image }}" />
+            <div class="img-box">
+              <img ng-src="{{ opt.image }}" />
+            </div>
+            <h2>{{ opt.text }}</h2>
           </div>
-          <h2>{{ opt.text}}</h2>
+        </div>
+      </div>
+      <div class="menu-container collectors">
+        <div class="selection-array">
+          <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in collectors">
+            <div class="img-box">
+              <img ng-src="{{ opt.image }}" />
+            </div>
+            <h2>{{ opt.text }}</h2>
           </div>
         </div>
       </div>
       <div class="menu-container final-container">
         <h1>Take a final look</h1>
-        <div class="menu-property-group" 
-          ng-repeat="group in groups">
+        <div class="menu-property-group" ng-repeat="group in groups">
           <div class="left" ng-style="group.style" ng-click="leftClicked($event)">
             <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
           </div>
