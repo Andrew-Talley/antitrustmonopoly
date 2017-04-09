@@ -1,0 +1,9 @@
+<h1>Choose board:</h1>
+<div class="selection-array">
+  <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in allOptions">
+  <div class="img-box">
+    <img ng-src="{{ opt.image }}" />
+  </div>
+  <h2>{{ opt.text}}</h2>
+  </div>
+</div>

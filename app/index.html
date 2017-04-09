@@ -14,71 +14,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="container" 
-        ng-app="app" 
-        ng-controller="appController"
-        ng-click="deactivateTooltip($event)">
-      <div class="menu-container">
-        <div class="board-options">
-          <h1>Choose board:</h1>
-          <div class="selection-array">
-            <div class="option-box" ng-click="menuOptionClick($event, opt)" ng-repeat="opt in allOptions">
-              <div class="img-box">
-                <img ng-src="{{ opt.image }}" />
+    <div class="container" ng-app="app" ng-controller="appController" ng-click="deactivateTooltip($event)" resize>
+      <div class="menu-container board-options">
+        
+      </div>
+      <div class="menu-container final-container">
+        <h1>Take a final look</h1>
+        <div class="menu-property-group" 
+          ng-repeat="group in groups">
+          <div class="left" ng-style="group.style" ng-click="leftClicked($event)">
+            <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
+          </div>
+          <div class="all-properties">
+            <div class="property" ng-repeat="property in group.properties">
+              <input class="name" ng-model="property.name" />
+              <div class="value-div">
+                <input class="value" ng-model="property.value" />
               </div>
-              <h2>{{ opt.text}}</h2>
+              <div class="remove" ng-click="group.properties.splice($index,1)">X</div>
+            </div>
+            <button class="property" ng-click="addProp($index)">Add Property</but>
+          </div>
+          <input type="color" ng-model="group.style['background-color']" />
+        </div>
+        <button class="menu-property-group" ng-click="addPropGroup()">Add Property Group</button>
+        <h2>Settings</h2>
+        <div class="settings">
+          <div class="settings-box">
+            <p>Players</p>
+            <div class="input-div not-dollars">
+              <input type="range" min="2" max="10" class="settings-input" ng-model="players.length" />
+            </div>
+          </div>
+          <div class="settings-box">
+            <p>Accounting Fee</p>
+            <div class="input-div">
+              <input class="settings-input" ng-model="settings.accountingFee" />
+            </div>
+          </div>
+          <div class="settings-box">
+            <p>Company Purchase Fee</p>
+            <div class="input-div">
+              <input class="settings-input" ng-model="settings.companyPurchase" />
+            </div>
+          </div>
+          <div class="settings-box">
+            <p>Ownership Change Fee</p>
+            <div class="input-div">
+              <input class="settings-input" ng-model="settings.ownershipChange" />
             </div>
           </div>
         </div>
-        <div class="final-setup">
-          <h1>Take a final look</h1>
-          <div class="menu-property-group" 
-            ng-repeat="group in groups">
-            <div class="left" ng-style="group.style" ng-click="leftClicked($event)">
-              <p class="remove-group" ng-click="groups.splice($index,1)">X</p>
-            </div>
-            <div class="all-properties">
-              <div class="property" ng-repeat="property in group.properties">
-                <input class="name" ng-model="property.name" />
-                <div class="value-div">
-                  <input class="value" ng-model="property.value" />
-                </div>
-                <div class="remove" ng-click="group.properties.splice($index,1)">X</div>
-              </div>
-              <button class="property" ng-click="addProp($index)">Add Property</but>
-            </div>
-            <input type="color" ng-model="group.style['background-color']" />
-          </div>
-          <button class="menu-property-group" ng-click="addPropGroup()">Add Property Group</button>
-          <h2>Settings</h2>
-          <div class="settings">
-            <div class="settings-box">
-              <p>Players</p>
-              <div class="input-div not-dollars">
-                <input type="range" min="2" max="10" class="settings-input" ng-model="players.length" />
-              </div>
-            </div>
-            <div class="settings-box">
-              <p>Accounting Fee</p>
-              <div class="input-div">
-                <input class="settings-input" ng-model="settings.accountingFee" />
-              </div>
-            </div>
-            <div class="settings-box">
-              <p>Company Purchase Fee</p>
-              <div class="input-div">
-                <input class="settings-input" ng-model="settings.companyPurchase" />
-              </div>
-            </div>
-            <div class="settings-box">
-              <p>Ownership Change Fee</p>
-              <div class="input-div">
-                <input class="settings-input" ng-model="settings.ownershipChange" />
-              </div>
-            </div>
-          </div>
-          <button class="start-button" ng-class="start()">Start</button>
-        </div>
+        <a class="start-button" ng-class="start()">Start</a>
       </div>
       <div class="game">                    
         <div class="menu-bar">

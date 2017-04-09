@@ -1,10 +1,16 @@
+/* TODO:
+ * Give it a UI that looks like it was made by someone who has actually seen things before in their life
+ * That more or less sums it up...
+ */
+
 .game {
-    margin: 2em 0;
+    margin: 2em 0 0;
     height: 100vh;
     background-color: white;
     position: relative;
     display: flex;
     flex-direction: column;
+    display: none;
 }
 
 .buy-property {
@@ -67,7 +73,7 @@
     position: absolute;
     top: calc(1em + 33px);
     left: 0;
-    z-index: 2;
+    z-index: 7;
     width: 100%;
     padding: 2px;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
