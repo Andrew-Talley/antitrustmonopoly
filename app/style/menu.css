@@ -1,21 +1,39 @@
+@keyframes blacken {
+    0% {
+        background-color: rgba(0,0,0,0);
+    }
+    40% {
+        background-color: rgba(0,0,0,1);
+    }
+    60% {
+        background-color: rgba(0,0,0,1);
+    }
+    100% {
+        background-color: rgba(0,0,0,0);
+    }
+}
+
 @keyframes exitFrame {
     0% {
         display: block;
         opacity: 1;
         position: relative;
         max-height: none;
+        overflow: auto;
     }
     99% {
         opacity: 0;
         display: block;
         position: relative;
         max-height: none;
+        overflow: auto;
     }
     100% {
         opacity: 0;
         display: none;
         position: absolute;
         max-height: 1px;
+        overflow: hidden;
     }
 }
 
@@ -45,10 +63,26 @@
 
 body {
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background-color: #ddd;
     font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
     position: relative;
+}
+
+.container::after {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    background-color:rgba(0,0,0,0);
+    content: '';
+    pointer-events: none;
+}
+
+.blacken::after {
+    animation: blacken 2s .5s;
 }
 
 input {
@@ -56,9 +90,13 @@ input {
     padding: .25em;
 }
 
-.menu-container {
-    max-width: 800px;
+.menu-super-container {
     margin: 0 auto;
+    max-width: 840px;
+}
+
+.menu-container {
+    margin: 20px;
     padding: 20px;
     background-color: #fff;
     position: relative;

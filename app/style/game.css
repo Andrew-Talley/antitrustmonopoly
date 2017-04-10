@@ -4,13 +4,19 @@
  */
 
 .game {
-    margin: 2em 0 0;
     height: 100vh;
     background-color: white;
-    position: relative;
-    display: flex;
     flex-direction: column;
     display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.show {
+    position: relative;
+    display: flex;
 }
 
 .buy-property {

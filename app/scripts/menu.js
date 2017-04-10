@@ -10,6 +10,7 @@ app.controller('appController', function ($scope, $http) {
   $scope.groups = [];
   $scope.settings = {};
   $scope.currentPlayer = {};
+  $scope.numPlayers = 4;
   $scope.players = [];
   $http.get('http://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
     $scope.allOptions = response;
@@ -43,19 +44,15 @@ app.controller('appController', function ($scope, $http) {
 
     }*/
     $http.get(url).success(function (response) {
-      for (group of response.propertyGroups.groups) {
+      for (group of response.propertyGroups) {
         group.isReady = false;
-        for (prop of group) {
+        for (prop of group.properties) {
           prop.owned = false;
         }
       }
       $scope.groups = response.propertyGroups;
       $scope.settings = response.gameSettings;
-      $scope.players = response.players;
       $scope.currentPlayer = $scope.players[0];
-      for (pl of $scope.players) {
-        pl.companies.push(pl);
-      }
     }).then(function () {
       $('.board-options').addClass('exit-frame');
       $('.final-container').addClass('enter-frame');
@@ -65,14 +62,14 @@ app.controller('appController', function ($scope, $http) {
   /** App Methods **/
   $scope.setCompanyOrder = function (entity) {
     if (!entity.isProperty) {
-      for (var i = 0; i < entity.directOwnership.length; i++) {
-        var subEnt = entity.directOwnership[i];
+      for (var i = 0; i < entity.subsidiaries.length; i++) {
+        var subEnt = entity.subsidiaries[i];
         if (!subEnt.isProperty) {
           if (subEnt.level <= entity.level) {
             subEnt.level = entity.level + 1;
             $scope.currentPlayer.maxLevel = Math.max($scope.currentPlayer.maxLevel, subEnt.level);
           }
-          $scope.setCompanyOrder(entity.directOwnership[i]);
+          $scope.setCompanyOrder(entity.subsidiaries[i]);
         }
       }
     }
@@ -80,24 +77,24 @@ app.controller('appController', function ($scope, $http) {
   $scope.setAllCompaniesOrder = function () {
     var player = $scope.currentPlayer;
     player.maxLevel = 1;
-    player.directOwnership.forEach(function (comp) {
+    player.subsidiaries.forEach(function (comp) {
       comp.level = 1;
     });
-    for (var i = 0; i < player.directOwnership.length; i++) {
-      $scope.setCompanyOrder(player.directOwnership[i]);
-      $scope.currentPlayer.maxLevel = Math.max(player.maxLevel, player.directOwnership[i].level);
+    for (var i = 0; i < player.subsidiaries.length; i++) {
+      $scope.setCompanyOrder(player.subsidiaries[i]);
+      $scope.currentPlayer.maxLevel = Math.max(player.maxLevel, player.subsidiaries[i].level);
     }
   }
   $scope.setMonopolies = function () {
     var properties = $scope.currentPlayer.properties;
     var monopolies = $scope.currentPlayer.monopolies;
     for (var i in properties) {
-      if (groups[properties[i].properties[0].groupInd].properties.length == properties[i].properties.length) {
-        groups[properties[i].properties[0].groupInd].isReady = true;
+      if ($scope.groups[properties[i].properties[0].groupInd].properties.length == properties[i].properties.length) {
+        $scope.groups[properties[i].properties[0].groupInd].isReady = true;
       }
     }
     for (var j in monopolies) {
-      if (groups[monopolies[j].properties[0].groupInd].properties.length != monopolies[j].properties.length) {
+      if ($scope.groups[monopolies[j].properties[0].groupInd].properties.length != monopolies[j].properties.length) {
         $scope.currentPlayer.properties[j] = monopolies[j];
         delete $scope.currentPlayer.monopolies[j];
       }
@@ -107,8 +104,9 @@ app.controller('appController', function ($scope, $http) {
     if ($scope.groups[group.order].isReady) {
       $scope.currentPlayer.monopolies[group.order] = group;
       for (var prop of group.properties) {
-        $scope.currentPlayer.directOwnership.push(prop);
+        $scope.currentPlayer.subsidiaries.push(prop);
       }
+      console.log($scope.currentPlayer.subsidiaries);
       delete $scope.currentPlayer.properties[group.order];
     }
   }
@@ -120,11 +118,11 @@ app.controller('appController', function ($scope, $http) {
     var newComp = {
       'name': 'C' + curPl.companyNumber,
       'level': 1,
-      'directOwnership': [],
+      'subsidiaries': [],
       'isProperty': false
     };
     $scope.currentPlayer.companies.push(newComp);
-    $scope.currentPlayer.directOwnership.push(newComp);
+    $scope.currentPlayer.subsidiaries.push(newComp);
     $scope.currentPlayer.companyNumber += 1;
     $scope.setAllCompaniesOrder();
     $scope.updateCanvas();
@@ -154,7 +152,6 @@ app.controller('appController', function ($scope, $http) {
     $scope.currentPlayer.properties[groupInd].properties.push(newProp);
     $scope.groups[groupInd].properties[propInd].owned = true;
     $scope.setMonopolies();
-    $scope.updateCanvas();
   }
 
   $scope.nextPlayer = function () {
@@ -164,10 +161,26 @@ app.controller('appController', function ($scope, $http) {
     $scope.currentPlayer = $scope.players[ind];
     $scope.updateCanvas();
   }
-  $scope.start = function () {
-    $('.final-container').css('display', 'none');
-    $('body').css('padding', '0');
-    $('.game').css('display', 'none');
+  $scope.startGame = function () {
+    $('.container').addClass('blacken');
+    window.setTimeout(function () {
+      $('.final-container').removeClass('enter-frame');
+      $('.game').addClass('show');
+    }, 1000);
+
+    for (var i = 0; i < $scope.numPlayers; i++) {
+      $scope.players.push({
+        "name": "Player " + (i + 1),
+        "properties": {},
+        "monopolies": {},
+        "companies": [],
+        "subsidiaries": [],
+        "maxLevel": 0,
+        "companyNumber": 1
+      });
+      $scope.players[i].companies.push($scope.players[i]);
+    }
+    $scope.currentPlayer = $scope.players[0];
   }
   $scope.activateCompany = function (event) {
     $(event.target).addClass('active-tooltip');
@@ -204,12 +217,12 @@ app.controller('appController', function ($scope, $http) {
     $('.first').addClass('active');
   }
   $scope.sever = function (owner, subsidiary) {
-    var index = owner.directOwnership.indexOf(subsidiary);
-    if (index != -1) owner.directOwnership.splice(index, 1);
+    var index = owner.subsidiaries.indexOf(subsidiary);
+    if (index != -1) owner.subsidiaries.splice(index, 1);
     $scope.treeUpdated();
   }
   $scope.addOwner = function (newOwner, newSubsidiary) {
-    newOwner.directOwnership.push(newSubsidiary);
+    newOwner.subsidiaries.push(newSubsidiary);
     $scope.treeUpdated();
   }
 
@@ -217,27 +230,30 @@ app.controller('appController', function ($scope, $http) {
     canvas.width = canvas.scrollWidth;
     canvas.height = canvas.scrollHeight;
     canvasContext.clearRect(0, 0, $canvas.width, $canvas.width);
-    // $scope.updateCompanyEntity($scope.currentPlayer);
-    for (company of $scope.currentPlayer.companies) {
-      $scope.updateCompanyEntity(company);
+    if (typeof $scope.currentPlayer.companies !== 'undefined') {
+      for (company of $scope.currentPlayer.companies) {
+        $scope.updateCompanyEntity(company);
+      }
     }
   }
 
   $scope.updateCompanyEntity = function (company) {
     compInd = $scope.currentPlayer.companies.indexOf(company);
     compPos = getCenterPositionInCanvas($('#company-' + compInd), false);
-    for (const subComp of company.directOwnership) {
-      var subPos;
-      if (subComp.isProperty) {
-        subPos = getCenterPositionInCanvas($('#property-' + subComp.groupInd + '-' + subComp.propInd), true);
+    for (const subsidiary of company.subsidiaries) {
+      var elem;
+      if (subsidiary.isProperty) {
+        elem = $('#property-' + subsidiary.groupInd + '-' + subsidiary.propInd);
       } else {
-        var subCompInd = $scope.currentPlayer.companies.indexOf(subComp);
-        subPos = getCenterPositionInCanvas($('#company-' + subCompInd), true);
+        elem = $('#company-' + $scope.currentPlayer.companies.indexOf(subsidiary));
       }
-      canvasContext.beginPath();
-      canvasContext.moveTo(compPos.x, compPos.y);
-      canvasContext.lineTo(subPos.x, subPos.y);
-      canvasContext.stroke();
+      if (typeof elem !== 'undefined') {
+        var subPos = getCenterPositionInCanvas(elem, true);
+        canvasContext.beginPath();
+        canvasContext.moveTo(compPos.x, compPos.y);
+        canvasContext.lineTo(subPos.x, subPos.y);
+        canvasContext.stroke();
+      }
     }
   }
 
@@ -268,8 +284,8 @@ var canvasContext = canvas.getContext('2d');
 function explorePath(item, company) {
   if (item.isProperty) return true;
   if (item === company) return false;
-  for (var i = 0; i < item.directOwnership.length; i++) {
-    if (!explorePath(item.directOwnership[i])) return false;
+  for (var i = 0; i < item.subsidiaries.length; i++) {
+    if (!explorePath(item.subsidiaries[i])) return false;
   }
   return true;
 }
@@ -281,8 +297,8 @@ function explorePath(item, company) {
  */
 function subsidiariesInclude(testCompany, keyCompany) {
   if (testCompany === keyCompany) return true;
-  if (testCompany.isProperty || testCompany.directOwnership.length == 0) return false;
-  return testCompany.directOwnership.some(function (subsidiary) {
+  if (testCompany.isProperty || testCompany.subsidiaries.length == 0) return false;
+  return testCompany.subsidiaries.some(function (subsidiary) {
     return subsidiariesInclude(subsidiary, keyCompany);
   });
 }
@@ -298,7 +314,7 @@ app.filter('doesNotOwn', function () {
 app.filter('notDirectlyOwnedBy', function () {
   return function (companies, keyCompany) {
     return companies.filter(function (owner) {
-      return !owner.directOwnership.some(function (subsidiary) {
+      return !owner.subsidiaries.some(function (subsidiary) {
         return subsidiary === keyCompany;
       })
     });
@@ -308,7 +324,7 @@ app.filter('notDirectlyOwnedBy', function () {
 app.filter('directlyOwns', function () {
   return function (companies, keyCompany) {
     return companies.filter(function (owner) {
-      return owner.directOwnership.some(function (subsidiary) {
+      return owner.subsidiaries.some(function (subsidiary) {
         return subsidiary === keyCompany;
       })
     });
