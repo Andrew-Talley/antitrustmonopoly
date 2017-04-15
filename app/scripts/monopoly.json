@@ -6,12 +6,12 @@
         {
           "name": "Mediterranean Avenue",
           "short": "Med. Ave",
-          "value": 60
+          "baseRent": 2
         },
         {
           "name": "Baltic Avenue",
           "short": "Baltic Ave",
-          "value": 60
+          "baseRent": 4
         }
       ]
     },
@@ -21,17 +21,17 @@
         {
           "name": "Oriental Avenue",
           "short": "Oriental Ave",
-          "value": 100
+          "baseRent": 6
         },
         {
           "name": "Vermont Avenue",
           "short": "VT Ave",
-          "value": 100
+          "baseRent": 6
         },
         {
           "name": "Connecticut Avenue",
           "short": "CT Ave",
-          "value": 120
+          "baseRent": 8
         }
       ]
     },
@@ -41,17 +41,17 @@
         {
           "name": "St. Charles Place",
           "short": "St. Charles Pl",
-          "value": 140
+          "baseRent": 10
         },
         {
           "name": "States Avenue",
           "short": "States Ave",
-          "value": 140
+          "baseRent": 10
         },
         {
           "name": "Virginia Avenue",
           "short": "VA Ave",
-          "value": 160
+          "baseRent": 12
         }
       ]
     },
@@ -61,17 +61,17 @@
         {
           "name": "St. James Place",
           "short": "St. James Pl",
-          "value": 180
+          "baseRent": 14
         },
         {
           "name": "Tennessee Avenue",
           "short": "TN Ave",
-          "value": 180
+          "baseRent": 14
         },
         {
           "name": "New York Avenue",
           "short": "NY Ave",
-          "value": 200
+          "baseRent": 16
         }
       ]
     },
@@ -81,17 +81,17 @@
         {
           "name": "Kentucky Avenue",
           "short": "KY Ave",
-          "value": 220
+          "baseRent": 18
         },
         {
           "name": "Indiana Avenue",
           "short": "IN Ave",
-          "value": 220
+          "baseRent": 18
         },
         {
           "name": "Illinois Avenue",
           "short": "IL Ave",
-          "value": 240
+          "baseRent": 20
         }
       ]
     },
@@ -101,17 +101,17 @@
         {
           "name": "Atlantic Avenue",
           "short": "Atlantic Ave",
-          "value": 260
+          "baseRent": 22
         },
         {
           "name": "Ventnor Avenue",
           "short": "Ventor Ave",
-          "value": 260
+          "baseRent": 22
         },
         {
           "name": "Marvin Gardens",
           "short": "Marvin Gardens",
-          "value": 280
+          "baseRent": 24
         }
       ]
     },
@@ -121,17 +121,17 @@
         {
           "name": "Pacific Avenue",
           "short": "Pacific Ave",
-          "value": 300
+          "baseRent": 26
         },
         {
           "name": "North Carolina Avenue",
           "short": "NC Ave",
-          "value": 300
+          "baseRent": 26
         },
         {
           "name": "Pennsylvania Avenue",
           "short": "PA Ave",
-          "value": 320
+          "baseRent": 28
         }
       ]
     },
@@ -141,12 +141,12 @@
         {
           "name": "Park Place",
           "short": "Park Pl",
-          "value": 350
+          "baseRent": 35
         },
         {
           "name": "Boardwalk",
           "short": "BW",
-          "value": 400
+          "baseRent": 50
         }
       ]
     }

@@ -1,0 +1,159 @@
+{
+  "propertyGroups": [
+    {
+      "color": "rgba(131,65,38, 1)",
+      "properties": [
+        {
+          "name": "Jacobs Field",
+          "short": "Jacobs Fld",
+          "baseRent": 20000
+        },
+        {
+          "name": "Texas Stadium",
+          "short": "TX Stadium",
+          "baseRent": 40000
+        }
+      ]
+    },
+    {
+      "color": "rgba(153,216,250, 1)",
+      "properties": [
+        {
+          "name": "Grand Ole Oprey",
+          "short": "Grand Oprey",
+          "baseRent": 60000
+        },
+        {
+          "name": "Gateway Arch",
+          "short": "Gtwy Arch",
+          "baseRent": 60000
+        },
+        {
+          "name": "Mall of America",
+          "short": "MoA",
+          "baseRent": 80000
+        }
+      ]
+    },
+    {
+      "color": "rgba(208,22,133, 1)",
+      "properties": [
+        {
+          "name": "Cenntennial Olympic Park",
+          "short": "Olymp. Park",
+          "baseRent": 100000
+        },
+        {
+          "name": "Red Rocks Ampitheater",
+          "short": "Red Rocks",
+          "baseRent": 100000
+        },
+        {
+          "name": "Liberty Bell",
+          "short": "Liberty Bell",
+          "baseRent": 120000
+        }
+      ]
+    },
+    {
+      "color": "rgba(245,130,0, 1)",
+      "properties": [
+        {
+          "name": "South Beach",
+          "short": "S. Beach",
+          "baseRent": 140000
+        },
+        {
+          "name": "Johnston Space Center",
+          "short": "Space Cntr",
+          "baseRent": 140000
+        },
+        {
+          "name": "Pioneer Square",
+          "short": "Pioneer Sq",
+          "baseRent": 160000
+        }
+      ]
+    },
+    {
+      "color": "rgba(233,0,19, 1)",
+      "properties": [
+        {
+          "name": "Camelback Moutain",
+          "short": "Camel Mtn.",
+          "baseRent": 180000
+        },
+        {
+          "name": "Waikiki Beach",
+          "short": "Wa. Beach",
+          "baseRent": 180000
+        },
+        {
+          "name": "Disney World",
+          "short": "Disney Wrld",
+          "baseRent": 200000
+        }
+      ]
+    },
+    {
+      "color": "rgba(254,246,0, 1)",
+      "properties": [
+        {
+          "name": "French Quaarter",
+          "short": "French Qtr.",
+          "baseRent": 220000
+        },
+        {
+          "name": "Hollywood",
+          "short": "Hollywood",
+          "baseRent": 220000
+        },
+        {
+          "name": "Golden Gate Bridge",
+          "short": "Golden Gate",
+          "baseRent": 240000
+        }
+      ]
+    },
+    {
+      "color": "rgba(25,169,68, 1)",
+      "properties": [
+        {
+          "name": "Las Vegas Boulevard",
+          "short": "LV Blvd",
+          "baseRent": 260000
+        },
+        {
+          "name": "Wrigley Field",
+          "short": "Wrigley",
+          "baseRent": 260000
+        },
+        {
+          "name": "White House",
+          "short": "White House",
+          "baseRent": 280000
+        }
+      ]
+    },
+    {
+      "color": "rgba(0,90,176, 1)",
+      "properties": [
+        {
+          "name": "Fenway Park",
+          "short": "Fenway",
+          "baseRent": 350000
+        },
+        {
+          "name": "Times Square",
+          "short": "Times Sq.",
+          "baseRent": 500000
+        }
+      ]
+    }
+  ],
+  "gameSettings": {
+    "accountingFee": 2,
+    "companyPurchase": 1000000,
+    "ownershipChange": 750000
+  }
+}

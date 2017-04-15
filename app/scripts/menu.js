@@ -49,19 +49,19 @@ app.controller('appController', function ($scope, $http) {
   }
   $scope.menuOptionClick = function (event, option) {
     var url = "";
-    // if (option.text == 'Monopoly (post-2008)') {
+    if (option.text == 'Monopoly (post-2008)' || option.text == 'Classic Monopoly (pre-2008)') {
     url = "https://www.antitrustmonopoly.com/app/scripts/monopoly.json";
-    /* } else if (option.text == "Classic Monopoly (pre-2008)") {
-        url = "https://www.antitrustmonopoly.com/app/scripts/classic-monopoly.json";
+    } else if (option.text == "Monopoly: Here & Now") {
+        url = "https://www.antitrustmonopoly.com/app/scripts/here-and-now.json";
     } else {
-
-    }*/
+      url = "https://www.antitrustmonopoly.com/app/scripts/custom.json"
+    }
     $http.get(url).success(function (response) {
       for (group of response.propertyGroups) {
         group.isReady = false;
         for (prop of group.properties) {
           prop.owned = false;
-          prop.newValue = prop.value * 2;
+          prop.rent = prop.baseRent * 2;
           prop.isProperty = true;
         }
       }
@@ -341,7 +341,7 @@ app.controller('appController', function ($scope, $http) {
       for (var propInd in group.properties) {
         var property = group.properties[propInd];
         var realProp = $scope.groups[property.propInd].properties[property.groupInd];
-        var odds = getBaseOdds(realProp.newValue, realProp.value, property);
+        var odds = getBaseOdds(realProp.rent, realProp.baseRent, property);
         initialValues.push(odds);
       };
       console.log(initialValues);

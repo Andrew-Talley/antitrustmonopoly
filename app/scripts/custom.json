@@ -1,0 +1,137 @@
+{
+  "propertyGroups": [
+    {
+      "color": "rgba(131,65,38, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "color": "rgba(153,216,250, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "color": "rgba(208,22,133, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "color": "rgba(245,130,0, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "color": "rgba(233,0,19, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "color": "rgba(254,246,0, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "color": "rgba(25,169,68, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "color": "rgba(0,90,176, 1)",
+      "properties": [
+        {
+          "name": "",
+          "value": 0
+        },
+        {
+          "name": "",
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "gameSettings": {
+    "accountingFee": 2,
+    "companyPurchase": 100,
+    "ownershipChange": 750000
+  }
+}
