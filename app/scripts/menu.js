@@ -16,6 +16,10 @@ function isEmpty(obj) {
     return true;
 }
 
+function parseIntWithCommas(str) {
+  return parseInt(str.replace(/,/g, ''));
+}
+
 var app = angular.module('app', []);
 app.controller('appController', function ($scope, $http) {
   $scope.allOptions = [];
@@ -489,6 +493,11 @@ function showMessage() {
   window.setTimeout(function () { $('.cost').removeClass('active') }, 2000);
 }
 
+function addThousandCommas(number) {
+  if (number < 1000) return number;
+  else return addThousandCommas(Math.floor(number / 1000)) + "," + (number % 1000);
+}
+
 app.filter('doesNotOwn', function () {
   return function (companies, input) {
     return companies.filter(function (company) {
@@ -517,7 +526,7 @@ app.filter('directlyOwns', function () {
   }
 });
 
-app.filter('probabilityPrettify', function() {
+app.filter('probabilityPrettify', function () {
   return function (value) {
     return (value * 100).toFixed(1) + '%';
   }
