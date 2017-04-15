@@ -137,7 +137,7 @@
                     <div class="message-container">
                       <div class="message first active">
                         <input ng-model="comp.name" />
-                        <button ng-click="severOwners($event)">Sever Owner</button>
+                        <button ng-click="severOwners($event)" ng-disabled="(currentPlayer.companies | directlyOwns: comp).length <= 1">Sever Owner</button>
                         <button ng-click="addOwners($event)">Add Owner</button>
                       </div>
                       <div class="message sever">
