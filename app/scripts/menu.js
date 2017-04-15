@@ -151,7 +151,7 @@ app.controller('appController', function ($scope, $http) {
     $scope.currentPlayer.companies.push(newComp);
     $scope.currentPlayer.subsidiaries.push(newComp);
     $scope.currentPlayer.companyNumber += 1;
-    $scope.currentPlayer.costMessage = "Buying a new company cost " + $scope.settings.companyPurchase;
+    $scope.currentPlayer.costMessage = "Buying a new company cost $" + $scope.settings.companyPurchase;
     showMessage();
     $scope.setAllCompaniesOrder();
     $scope.updateCanvas();
@@ -227,8 +227,17 @@ app.controller('appController', function ($scope, $http) {
       $('.popup').addClass('show');
     }
     
-
     $scope.updateCanvas();
+  }
+
+  $scope.accountingFees = function () {
+    var accountingFees = 0;
+    $scope.currentPlayer.subsidiaries.forEach(function (subsidiary) {
+      accountingFees += totalAccounting(subsidiary);
+    });
+    accountingFees *= $scope.settings.accountingFee;
+    $scope.currentPlayer.costMessage = "Your accounting fees are $" + (accountingFees);
+    showMessage();
   }
   $scope.startGame = function () {
     $('.container').addClass('blacken');
@@ -365,6 +374,7 @@ app.controller('appController', function ($scope, $http) {
   $scope.hidePopup = function () {
     $('.popup').removeClass('show', 'found');
     $scope.currentPlayer.oldMonopolies = [];
+    $scope.accountingFees();
   }
 
   $scope.nameOfOwner = function (property) {
@@ -463,6 +473,15 @@ function connectionsTo(testCompany, keyCompany) {
     if (value != -1) totalValue += value;
   })
   return totalValue;
+}
+
+function totalAccounting(company) {
+  if (company.isProperty || company.subsidiaries.length == 0) return 0;
+  var connections = 0;
+  company.subsidiaries.forEach(function (subsidiary) {
+    connections += totalAccounting(subsidiary) + 1;
+  });
+  return connections;
 }
 
 function showMessage() {
