@@ -341,6 +341,8 @@ app.controller('appController', function ($scope, $http) {
       for (var propInd in group.properties) {
         var property = group.properties[propInd];
         var realProp = $scope.groups[property.propInd].properties[property.groupInd];
+        console.log(connectionsTo($scope.currentPlayer, property));
+        console.log(distance($scope.currentPlayer, property));
         var odds = getBaseOdds(realProp.rent, realProp.baseRent, connectionsTo($scope.currentPlayer, property), distance($scope.currentPlayer, property));
         initialValues.push(odds);
       };
@@ -424,7 +426,7 @@ function distance(testCompany, keyCompany) {
   testCompany.subsidiaries.forEach(function (subsidiary) {
     var dis = distance(subsidiary, keyCompany);
     if (dis != -1) {
-      minPath = Math.min(minPath, distance(subsidiary, keyCompany));
+      minPath = Math.min(minPath, dis + 1);
     }
   });
   return minPath;
