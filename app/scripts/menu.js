@@ -341,12 +341,9 @@ app.controller('appController', function ($scope, $http) {
       for (var propInd in group.properties) {
         var property = group.properties[propInd];
         var realProp = $scope.groups[property.propInd].properties[property.groupInd];
-        console.log(connectionsTo($scope.currentPlayer, property));
-        console.log(distance($scope.currentPlayer, property));
         var odds = getBaseOdds(realProp.rent, realProp.baseRent, connectionsTo($scope.currentPlayer, property), distance($scope.currentPlayer, property));
         initialValues.push(odds);
       };
-      console.log(initialValues);
       var values = initialValues.map(function (x, ind, array) {
         x *= 2;
         array.forEach(function (val, index) {
@@ -355,7 +352,6 @@ app.controller('appController', function ($scope, $http) {
         x /= (array.length + 1);
         return x;
       });
-      console.log(values);
       for (var propInd in group.properties) {
         group.properties[propInd].probability = toProbability(values.shift());
       };
