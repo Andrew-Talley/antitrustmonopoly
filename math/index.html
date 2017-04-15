@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formal Mathematics</title>
+        <meta charset='utf-8' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <script src="config.js">
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [["\\(","\\)"]]}
+            });
+        </script>
+        <link rel="stylesheet" href="math.css">
+        <script src='https:\\cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    </head>
+    <body style="text-align:left">
+        <div class="container">
+            <p><a href="../" class="left-align">Home</a></p>
+            <p>The structure of any series of holdings is represented as a digraph. Given</p>
+            $$P = Player\\ C = Company\\ M = Monopoly\\ K = Property\enspace of\enspace M\\ R_C = Current\enspace Rent\\ R_0 = Original\enspace Rent\\\ell = length\enspace of\enspace the\enspace path$$ 
+            The initial probability \(P_i\) of the discovery of any property \(K\) with paths \(\newcommand\pk{\operatorname{P-K}}\pk\) is 
+            $$
+            \newcommand\pk{\operatorname{P-K}}
+            \dfrac{R_{C}-R_0}{R_0} \cdot \dfrac{1}{16 \cdot \sqrt[3]{15}} \cdot \dfrac{1}{ (\sum{ \ell (\forall \pk)}) \cdot \mathcal{d} (P, K)} $$
+            The adjusted probability \(P_A\) of the discovery of property \(K_0\) is 
+            $$
+                \def\mean#1{\left< #1 \right>}
+                \mean{P_i(K_0),\enspace P_i(K_0),\enspace P_i(\forall K \ne K_0) }
+            $$
+            Thus, the probability of any given monopoly being discovered is
+            $$
+                \prod P_A(\forall K\enspace in\enspace M)
+            $$
+        </div>
+    </body>
+</html>

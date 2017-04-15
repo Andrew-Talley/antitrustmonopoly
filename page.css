@@ -8,21 +8,46 @@ body {
 
 .container {
     position: relative;
-    max-width: 600px;
-    height: 400px;
+    max-width: 800px;
     margin: 50px auto;
     margin: 10vh auto;
     background-color: #fff;
     border: 1px solid #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: .67em;
 }
 
-.container div {
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.menu-container {
+    width: 35%;
+    border: 1px solid rgba(0,0,0,0.5);
+    margin: 1%;
+}
+
+li {
+    text-align: left;
+}
+
+.img-container {
+    width: 100%;
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
 }
 
-h2 {
-    margin: 1em 0;
+.menu-container img {
+    max-height: 150px;
+    /*position: relative;
+    left: 50%;
+    transform: translateX(-50%);*/
+    /*
+    margin: 0 auto;
+}
+
+.updates {
+    width: 100%;
 }

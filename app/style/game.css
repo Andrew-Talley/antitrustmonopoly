@@ -140,8 +140,24 @@
 
 .non-monopoly-group {
     margin: .25em 0;
-    padding-right: 1em;
     position: relative;
+}
+
+.non-monopoly-prop {
+    position: relative;
+    padding-right: 1.2em;
+    border: 1px solid rgba(0,0,0,0.15);
+}
+
+.non-monopoly-prop span {
+    position: absolute;
+    top: 50%;
+    right: .1em;
+    transform: translateY(-50%);
+}
+
+.non-monopoly-prop span:hover {
+    text-shadow: rgba(255,255,255,0.3) -1px 0px 2px, rgba(255,255,255,0.3) 0px -1px 2px, rgba(255,255,255,0.3) 1px 0px 2px, rgba(255,255,255,0.3) 0px 1px 2px;
 }
 
 .non-monopoly-arrow {
@@ -248,7 +264,7 @@
 .message-container {
     position: relative;
     overflow: hidden;
-    height: 6em;
+    height: 8em;
     width: 220px;
 }
 
@@ -266,7 +282,7 @@
     padding: .6em;
     transition: .3s;
     background-color: #ddd;
-    height: 4.8em;
+    height: 6.8em;
 }
 
 .message.first {
@@ -309,6 +325,8 @@
 .tooltip input {
     box-sizing: border-box;
     width: 100%;
+    font-size: 1em;
+    padding: 0;
 }
 
 .tooltip button {
@@ -350,6 +368,11 @@
     flex-grow: 1;
 }
 
+.property-holder p {
+    margin: 0;
+    text-align: center;
+}
+
 .sell {
     box-sizing: border-box;
     background-color: red;
@@ -375,3 +398,71 @@
     top: 0;
     left: 0;
 }
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    transition: .5s ease-in-out;
+    background-color: #ddd;
+    border-radius: .2em;
+    padding: 1em;
+}
+
+.popup.show {
+    pointer-events: all;
+    opacity: 1;
+    display: block;
+}
+
+.popup.found .found, .safe {
+    display: block;
+}
+
+.found, .popup.found .safe {
+    display: none;
+}
+
+.popup h2 {
+    margin-top: 0;
+}
+
+.popup img {
+    width: 300px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.okay {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cost {
+    position: fixed;
+    bottom: .5em;
+    right: .5em;
+    padding: 1em;
+    border-radius: .5em;
+    background-color: #eee;
+    opacity: 0;
+    pointer-events: none;
+    transition: .4s ease-out;
+    cursor: pointer;
+}
+
+.cost.active {
+    opacity: .7;
+    pointer-events: all;
+}
+
+.cost h3 {
+    margin: 0;
+}
+

@@ -1,3 +1,7 @@
+/** TODO:
+ * The "start" button isn't aligned right because the transform isn't working properly
+ */
+
 @keyframes blacken {
     0% {
         background-color: rgba(0,0,0,0);
@@ -98,6 +102,7 @@ input {
 .menu-container {
     margin: 20px;
     padding: 20px;
+    padding-bottom: calc(20px + 2em);
     background-color: #fff;
     position: relative;
 }
@@ -325,7 +330,7 @@ input[type='color'] {
     color: white;
     border: none;
     padding: .25em 1em;
-    position: relative;
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
