@@ -341,7 +341,7 @@ app.controller('appController', function ($scope, $http) {
       for (var propInd in group.properties) {
         var property = group.properties[propInd];
         var realProp = $scope.groups[property.propInd].properties[property.groupInd];
-        var odds = getBaseOdds(realProp.rent, realProp.baseRent, property);
+        var odds = getBaseOdds(realProp.rent, realProp.baseRent, connectionsTo($scope.currentPlayer, property), distance($scope.currentPlayer, property));
         initialValues.push(odds);
       };
       console.log(initialValues);
@@ -391,12 +391,10 @@ const baseOddsMultiplier = 1 / (16 * Math.pow(5, (1 / 3)));
  * @param {Number} oldRent - The old rent for the property
  * @param {JSON} property - Property for odds
  */
-function getBaseOdds(newRent, oldRent, property) {
+function getBaseOdds(newRent, oldRent, pathLength, distance) {
   var rentIncrease = (newRent - oldRent) / oldRent;
-  var pathLength = connectionsTo($scope.currentPlayer, property);
   var adjustedPathLength = 1 / (pathLength + Math.pow(5, (-1 / 3)));
-  var distanceTo = distance($scope.currentPlayer, property);
-  var finalValue = rentIncrease * adjustedPathLength * baseOddsMultiplier / distanceTo;
+  var finalValue = rentIncrease * adjustedPathLength * baseOddsMultiplier / distance;
   return finalValue;
 }
 
