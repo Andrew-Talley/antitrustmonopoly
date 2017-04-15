@@ -166,7 +166,7 @@
                 <div class="property-group" ng-repeat="group in currentPlayer.monopolies" update-canvas-after>
                   <div class="property" ng-repeat="prop in group.properties | orderBy:['propInd']" ng-click="activateProperty($event)">
                     <div class="property-holder" ng-attr-style="border-top: 1.5em solid {{groups[group.order].color }}" ng-attr-id="property-{{group.order}}-{{prop.propInd}}">
-                      <h4 align="center">{{groups[prop.groupInd].properties[prop.propInd].short | groups[prop.groupInd].properties[prop.propInd].name}} </h4>
+                      <h4 align="center">{{groups[prop.groupInd].properties[prop.propInd].short}} </h4>
                       <p>{{prop.probability | probabilityPrettify}}</p>
                     </div>
                     <div class="tooltip top">
