@@ -71,6 +71,14 @@
     border-right: none;
 }
 
+.bar-item input, .bar-item.focus h4 {
+    display: none;
+}
+
+.bar-item.focus input, .bar-item h4 {
+    display: block;
+}
+
 .expanded-menu {
     box-sizing: border-box;
     display: none;
