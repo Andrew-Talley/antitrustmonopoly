@@ -10,7 +10,7 @@ body {
     position: relative;
     max-width: 800px;
     margin: 50px auto;
-    margin: 10vh auto;
+    margin: 5vh auto;
     background-color: #fff;
     border: 1px solid #ccc;
     display: flex;
@@ -28,6 +28,8 @@ h1 {
     width: 35%;
     border: 1px solid rgba(0,0,0,0.5);
     margin: 1%;
+    text-decoration: none;
+    color: #000;
 }
 
 li {
@@ -41,12 +43,13 @@ li {
 
 .menu-container img {
     max-height: 150px;
-    /*position: relative;
-    left: 50%;
-    transform: translateX(-50%);*/
     margin: 0 auto;
 }
 
 .updates {
     width: 100%;
+}
+
+.bold {
+    font-weight: 700;
 }
