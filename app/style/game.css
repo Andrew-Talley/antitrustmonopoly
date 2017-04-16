@@ -6,8 +6,8 @@
 .game {
     height: 100vh;
     background-color: white;
+    display: none; /* Later becomes flex */
     flex-direction: column;
-    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -267,6 +267,10 @@
     overflow: hidden;
     height: 8em;
     width: 220px;
+}
+
+.settings-box h4 {
+    margin: .3em !important;
 }
 
 .tooltip.top h4 {
