@@ -1,24 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @Andrew-Talley
- Sign out
- Watch 182
-  Star 3,969
-  Fork 615 mathjax/MathJax
- Code  Issues 269  Pull requests 3  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathMathJax/config/default.js
-61f4bae  on Aug 31, 2016
- Davide P. Cervone Repack and recombine for 2.7.0-beta
-1 contributor
-RawBlameHistory     
-1118 lines (1005 sloc)  42.4 KB
-/* -*- Mode: Javascript; indent-tabs-mode:nil; js-indent-level: 2 -*- */
-/* vim: set ts=2 et sw=2 tw=80: */
-
 /*************************************************************
  *
  *  MathJax/config/default.js
