@@ -353,7 +353,7 @@ app.controller('appController', function ($scope, $http) {
       var initialValues = [];
       for (var propInd in group.properties) {
         var property = group.properties[propInd];
-        var realProp = $scope.groups[property.propInd].properties[property.groupInd];
+        var realProp = $scope.groups[property.groupInd].properties[property.propInd];
         var odds = getBaseOdds(realProp.rent, realProp.baseRent, connectionsTo($scope.currentPlayer, property), distance($scope.currentPlayer, property));
         initialValues.push(odds);
       };
