@@ -84,10 +84,10 @@
             <div class="settings-box">
               <p>House Rules</p>
               <div>
-                <p><input type="radio" ng-bind="rules" value="default" checked />Default: Regulators search for monopolies every turn and sell them back to the bank</p>
-                <p><input type="radio" ng-bind="rules" value="transfer" />Government Transfer: Regulators will randomly distribute the properties among other players once found</p>
-                <p><input type="radio" ng-bind="rules" value="takeover" />Government Takeover: The Government assumes control of monopolies, and will charge whoever lands on it rent for the rest of the game</p>
-                <p><input type="radio" ng-bind="rules" value="treble" />Treble Damages: Regulators search for a monopoly every time rent is charged, and if they discover it, the owner of the monopoly pays 3x damages to the person who landed on the property</p>
+                <p><input type="radio" name="rules" ng-model="rules" value="default" checked />Default: Regulators search for monopolies every turn and sell them back to the bank</p>
+                <p><input type="radio" name="rules" ng-model="rules" value="transfer" />Government Transfer: Regulators will randomly distribute the properties among other players once found</p>
+                <p><input type="radio" name="rules" ng-model="rules" value="takeover" />Government Takeover: The Government assumes control of monopolies, and will charge whoever lands on it rent for the rest of the game</p>
+                <p><input type="radio" name="rules" ng-model="rules" value="treble" />Treble Damages: Regulators search for a monopoly every time rent is charged, and if they discover it, the owner of the monopoly pays 3x damages to the person who landed on the property</p>
               </div>
             </div>
           </div>
@@ -212,7 +212,7 @@
                       <div class="pointy"></div>
                     </div>
                   </div>
-                  <div class="investigate">
+                  <div class="investigate" ng-if="!settings.checkEveryTurn" ng-click="searchAndDisplayMonopoly($index)">
                     Investigate
                   </div>
                   {{ $last ? updateCanvas() : "" }}
@@ -229,7 +229,7 @@
           <div class="found">
             <h2>Regulators found your monopoly!</h2>
             <img src="./images/jail.jpg" />
-            <ul>
+            <ul ng-if="!settings.checkEveryTurn">
               <div ng-repeat="group in currentPlayer.oldMonopolies">
                 <li ng-repeat="prop in group.properties">{{groups[prop.groupInd].properties[prop.propInd].name}} is now owned by {{nameOfOwner(prop)}}</li>
               </div>

@@ -29,6 +29,8 @@ app.controller('appController', function ($scope, $http) {
   $scope.numPlayers = 4;
   $scope.players = [];
   $scope.colors = ['#000', '#00f', '#0f0', '#f00', '#0ff', '#f0f', '#ff0'];
+  $scope.rules = "default"
+
   $http.get('http://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
     $scope.allOptions = response;
   });
@@ -71,11 +73,11 @@ app.controller('appController', function ($scope, $http) {
       }
       $scope.groups = response.propertyGroups;
 
-      $scope.settings.accountingFee = 2 * response.multiplier;
-      $scope.settings.companyPurchase = 100 * response.multiplier;
-      $scope.settings.ownershipChange = 75 * response.multiplier;
-      $scope.settings.baseOdds = 1 / (16 * Math.pow(5, (1 / 3)));
+      $scope.settings.accountingFee = 2 * /*response.multiplier*/1;
+      $scope.settings.companyPurchase = 100 * /*response.multiplier*/1;
+      $scope.settings.ownershipChange = 75 * /*response.multiplier*/1;
 
+      $scope.settings.baseOdds = Math.pow((1/49), (1 / 3));
       $scope.settings.checkEveryTurn = true;
       $scope.settings.giveToBank = true;
       $scope.settings.governmentControl = false;
@@ -85,6 +87,41 @@ app.controller('appController', function ($scope, $http) {
       $('.board-options').addClass('exit-frame');
       $('.final-container').addClass('enter-frame');
     });
+  }
+
+  $scope.updateHouseSettings = function () {
+    console.log($scope.rules);
+    switch ($scope.rules) {
+      case "default":
+        $scope.settings.checkEveryTurn = true;
+        $scope.settings.giveToBank = true;
+        $scope.settings.governmentControl = false;
+        $scope.settings.baseOdds = Math.pow((1/49), (1 / 3));
+        break;
+      case "transfer":
+        $scope.settings.checkEveryTurn = true;
+        $scope.settings.giveToBank = false;
+        $scope.settings.governmentControl = false;
+        $scope.settings.baseOdds = Math.pow((1/49), (1 / 3));
+        break;
+      case "takeover":
+        $scope.settings.checkEveryTurn = true;
+        $scope.settings.giveToBank = false;
+        $scope.settings.governmentControl = true;
+        $scope.settings.baseOdds = Math.pow((1/49), (1 / 3));
+        break;
+      case "treble":
+        $scope.settings.checkEveryTurn = false;
+        $scope.settings.giveToBank = false;
+        $scope.settings.governmentControl = false;
+        $scope.settings.baseOdds = Math.pow((1/2), (1 / 3));
+        break;
+      default:
+        $scope.settings.checkEveryTurn = true;
+        $scope.settings.giveToBank = true;
+        $scope.settings.governmentControl = false;
+        break;
+    }
   }
 
   /** App Methods **/
@@ -198,6 +235,11 @@ app.controller('appController', function ($scope, $http) {
     $scope.addPropertyToSpecificPlayer($scope.currentPlayer, newProp);
   }
 
+  $scope.searchAndDisplayMonopoly = function (monopInd) {
+    $scope.searchMonopoly(monopInd);
+    $scope.showSearchResults();
+  }
+
   $scope.searchMonopoly = function (monopInd) {
     var monopoly = $scope.currentPlayer.monopolies[monopInd];
     var playerInd = $scope.players.indexOf($scope.currentPlayer);
@@ -246,6 +288,8 @@ app.controller('appController', function ($scope, $http) {
       }
       $scope.showSearchResults();
     }
+    
+    $scope.accountingFees();
 
     $scope.updateCanvas();
   }
@@ -269,9 +313,14 @@ app.controller('appController', function ($scope, $http) {
       accountingFees += totalAccounting(subsidiary);
     });
     accountingFees *= $scope.settings.accountingFee;
-    $scope.currentPlayer.costMessage = "Your accounting fees are $" + (accountingFees);
-    showMessage();
+    if (accountingFees != 0) {
+      $scope.currentPlayer.costMessage = "Your accounting fees are $" + (accountingFees);
+      showMessage();
+    } else {
+      console.log(accountingFees);
+    }
   }
+
   $scope.startGame = function () {
     $('.container').addClass('blacken');
     window.setTimeout(function () {
@@ -295,6 +344,9 @@ app.controller('appController', function ($scope, $http) {
       $scope.players[i].companies.push($scope.players[i]);
     }
     $scope.currentPlayer = $scope.players[0];
+
+    $scope.updateHouseSettings();
+    if (!$scope.settings.checkEveryTurn) $('.player-monopolies').addClass('user-check');
   }
   $scope.activateCompany = function (event) {
     $(event.target).addClass('active-tooltip');
@@ -382,10 +434,9 @@ app.controller('appController', function ($scope, $http) {
       var initialValues = [];
       for (var propInd in group.properties) {
         var property = group.properties[propInd];
-        var odds = $scope.getBaseOdds($scope.groups[property.groupInd].properties[property.propInd]);
+        var odds = $scope.getBaseOdds(property);
         initialValues.push(odds);
       };
-      console.log(initialValues);
       var values = initialValues.map(function (x, ind, array) {
         x *= 2;
         array.forEach(function (val, index) {
@@ -394,7 +445,6 @@ app.controller('appController', function ($scope, $http) {
         x /= (array.length + 1);
         return x;
       });
-      console.log(values);
       for (var propInd in group.properties) {
         group.properties[propInd].probability = toProbability(values.shift());
       };
@@ -421,13 +471,18 @@ app.controller('appController', function ($scope, $http) {
         }
       }
     }
-    return "the bank";
+    return ($scope.settings.governmentControl ? "the Government" : "the bank");
   }
 
-  $scope.getBaseOdds = function (property) {
-    const rentIncrease = (property.rent - property.oldRent) / property.oldRent;
-    const pathLength = 1 / (connectionsTo($scope.currentPlayer, property) + Math.pow(5, (-1 / 3)));
-    const dist = distance($scope.currentPlayer, property);
+  $scope.getBaseOdds = function (prop) {
+    var property = $scope.groups[prop.groupInd].properties[prop.propInd];
+    const rentIncrease = (property.rent - property.baseRent) / property.baseRent;
+    console.log(rentIncrease);
+    const pathLength = 1 / (connectionsTo($scope.currentPlayer, prop));
+    console.log(pathLength);
+    const dist = distance($scope.currentPlayer, prop);
+    console.log(dist);
+    console.log($scope.settings.baseOdds);
     return rentIncrease * pathLength * $scope.settings.baseOdds / dist;
   }
 });

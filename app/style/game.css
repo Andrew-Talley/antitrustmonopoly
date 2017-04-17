@@ -371,6 +371,9 @@
     position: relative;
     display: flex;
     flex-direction: row;
+}
+
+.player-monopolies.user-check .property-group {
     padding-bottom: 1.5em;
 }
 
