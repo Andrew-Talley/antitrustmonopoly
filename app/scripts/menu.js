@@ -395,9 +395,9 @@ app.controller('appController', function ($scope, $http) {
     $scope.setDiscoveryOdds();
   }
   $scope.updateCanvas = function () {
-    canvas.width = canvas.scrollWidth;
-    canvas.height = canvas.scrollHeight;
-    canvasContext.clearRect(0, 0, $canvas.width, $canvas.width);
+    canvas.width = canvas.scrollWidth * 2;
+    canvas.height = canvas.scrollHeight * 2;
+    canvasContext.clearRect(0, 0, $canvas.width * 2, $canvas.width * 2);
     if (typeof $scope.currentPlayer.companies !== 'undefined') {
       for (company of $scope.currentPlayer.companies) {
         $scope.updateCompanyEntity(company);
@@ -419,8 +419,9 @@ app.controller('appController', function ($scope, $http) {
           var subPos = getCenterPositionInCanvas(elem, true);
           var subLevel = subsidiary.level;
           canvasContext.beginPath();
-          canvasContext.moveTo(compPos.x, compPos.y);
-          canvasContext.lineTo(subPos.x, subPos.y);
+          canvasContext.lineWidth = 2;
+          canvasContext.moveTo(compPos.x * 2, compPos.y * 2);
+          canvasContext.lineTo(subPos.x * 2, subPos.y * 2);
           canvasContext.strokeStyle = $scope.colors[company.level % $scope.colors.length];
           canvasContext.stroke();
         } catch (error) {}
