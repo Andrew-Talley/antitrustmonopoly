@@ -81,6 +81,15 @@
                 <input class="settings-input" ng-model="settings.ownershipChange" />
               </div>
             </div>
+            <div class="settings-box">
+              <p>House Rules</p>
+              <div>
+                <p><input type="radio" ng-bind="rules" value="default" checked />Default: Regulators search for monopolies every turn and sell them back to the bank</p>
+                <p><input type="radio" ng-bind="rules" value="transfer" />Government Transfer: Regulators will randomly distribute the properties among other players once found</p>
+                <p><input type="radio" ng-bind="rules" value="takeover" />Government Takeover: The Government assumes control of monopolies, and will charge whoever lands on it rent for the rest of the game</p>
+                <p><input type="radio" ng-bind="rules" value="treble" />Treble Damages: Regulators search for a monopoly every time rent is charged, and if they discover it, the owner of the monopoly pays 3x damages to the person who landed on the property</p>
+              </div>
+            </div>
           </div>
           <a class="start-button" ng-click="startGame()">Start</a>
         </div>
@@ -202,6 +211,9 @@
                       </div>
                       <div class="pointy"></div>
                     </div>
+                  </div>
+                  <div class="investigate">
+                    Investigate
                   </div>
                   {{ $last ? updateCanvas() : "" }}
                 </div>

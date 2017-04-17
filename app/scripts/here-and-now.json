@@ -151,9 +151,5 @@
       ]
     }
   ],
-  "gameSettings": {
-    "accountingFee": 2,
-    "companyPurchase": 1000000,
-    "ownershipChange": 750000
-  }
+  "multiplier": 10000
 }

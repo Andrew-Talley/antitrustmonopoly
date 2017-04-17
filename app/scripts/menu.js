@@ -70,7 +70,16 @@ app.controller('appController', function ($scope, $http) {
         }
       }
       $scope.groups = response.propertyGroups;
-      $scope.settings = response.gameSettings;
+
+      $scope.settings.accountingFee = 2 * response.multiplier;
+      $scope.settings.companyPurchase = 100 * response.multiplier;
+      $scope.settings.ownershipChange = 75 * response.multiplier;
+      $scope.settings.baseOdds = 1 / (16 * Math.pow(5, (1 / 3)));
+
+      $scope.settings.checkEveryTurn = true;
+      $scope.settings.giveToBank = true;
+      $scope.settings.governmentControl = false;
+
       $scope.currentPlayer = $scope.players[0];
     }).then(function () {
       $('.board-options').addClass('exit-frame');
@@ -189,37 +198,59 @@ app.controller('appController', function ($scope, $http) {
     $scope.addPropertyToSpecificPlayer($scope.currentPlayer, newProp);
   }
 
-  $scope.nextPlayer = function () {
-    var ind = $scope.players.indexOf($scope.currentPlayer) + 1;
-    ind = (ind == $scope.players.length ? 0 : ind);
-    $scope.currentPlayer = $scope.players[ind];
+  $scope.searchMonopoly = function (monopInd) {
+    var monopoly = $scope.currentPlayer.monopolies[monopInd];
+    var playerInd = $scope.players.indexOf($scope.currentPlayer);
 
-    for (var monopInd in $scope.currentPlayer.monopolies) {
-      var monopoly = $scope.currentPlayer.monopolies[monopInd];
-
-
-      if (monopoly.properties.every(function (prop) {
+    if (monopoly.properties.every(function (prop) {
         return Math.random() < prop.probability;
       })) {
-        $scope.currentPlayer.oldMonopolies.push(monopoly);
+      $scope.currentPlayer.oldMonopolies.push(monopoly);
+      $scope.groups[monopoly.properties[0].propInd].isReady = false;
+      
+      if ($scope.settings.giveToBank) {
+        for (var prop in monopoly.properties) {
+          $scope.groups[prop.groupInd].properties[prop.propInd].isOwned = false;
+        }
+      } else if (!$scope.settings.governmentControl) {
         var randomSeed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
-        $scope.groups[monopoly.properties[0].propInd].isReady = false;
         for (var propInd in monopoly.properties) {
           const numPossiblePlayers = $scope.players.length - 1;
           var thisProp = monopoly.properties[propInd];
           var newPlayerIndex = randomSeed % (numPossiblePlayers);
           randomSeed = Math.floor(randomSeed / numPossiblePlayers);
-          if (newPlayerIndex >= ind) newPlayerIndex += 1;
+          if (newPlayerIndex >= playerInd) newPlayerIndex += 1;
           if (typeof $scope.players[newPlayerIndex] === 'undefined') {
+            alert("Something went wrong. Please roll a dice to determine who gets " + $scope.groups[thisProp.groupInd].properties[thisProp.propInd].name);
             console.error("The player is undefined");
             console.log(newPlayerIndex);
             console.log($scope.players);
+            $scope.groups[thisProp.groupInd].properties[thisProp.propInd].isOwned = false;
           }
           $scope.addPropertyToSpecificPlayer($scope.players[newPlayerIndex], thisProp);
         }
-        delete $scope.currentPlayer.monopolies[monopInd];
       }
+      
+      delete $scope.currentPlayer.monopolies[monopInd];
     }
+  }
+
+  $scope.nextPlayer = function () {
+    var ind = $scope.players.indexOf($scope.currentPlayer) + 1;
+    ind = (ind == $scope.players.length ? 0 : ind);
+    $scope.currentPlayer = $scope.players[ind];
+
+    if ($scope.settings.checkEveryTurn) {    
+      for (var monopInd in $scope.currentPlayer.monopolies) {
+        $scope.searchMonopoly(monopInd);      
+      }
+      $scope.showSearchResults();
+    }
+
+    $scope.updateCanvas();
+  }
+
+  $scope.showSearchResults = function () {
     if ($scope.currentPlayer.oldMonopolies.length > 0) {
       $('.popup').addClass('found');
       $('.popup').removeClass('show');
@@ -230,8 +261,6 @@ app.controller('appController', function ($scope, $http) {
       $('.popup').removeClass('show');
       $('.popup').addClass('show');
     }
-    
-    $scope.updateCanvas();
   }
 
   $scope.accountingFees = function () {
@@ -353,10 +382,10 @@ app.controller('appController', function ($scope, $http) {
       var initialValues = [];
       for (var propInd in group.properties) {
         var property = group.properties[propInd];
-        var realProp = $scope.groups[property.groupInd].properties[property.propInd];
-        var odds = getBaseOdds(realProp.rent, realProp.baseRent, connectionsTo($scope.currentPlayer, property), distance($scope.currentPlayer, property));
+        var odds = $scope.getBaseOdds($scope.groups[property.groupInd].properties[property.propInd]);
         initialValues.push(odds);
       };
+      console.log(initialValues);
       var values = initialValues.map(function (x, ind, array) {
         x *= 2;
         array.forEach(function (val, index) {
@@ -365,6 +394,7 @@ app.controller('appController', function ($scope, $http) {
         x /= (array.length + 1);
         return x;
       });
+      console.log(values);
       for (var propInd in group.properties) {
         group.properties[propInd].probability = toProbability(values.shift());
       };
@@ -393,22 +423,14 @@ app.controller('appController', function ($scope, $http) {
     }
     return "the bank";
   }
+
+  $scope.getBaseOdds = function (property) {
+    const rentIncrease = (property.rent - property.oldRent) / property.oldRent;
+    const pathLength = 1 / (connectionsTo($scope.currentPlayer, property) + Math.pow(5, (-1 / 3)));
+    const dist = distance($scope.currentPlayer, property);
+    return rentIncrease * pathLength * $scope.settings.baseOdds / dist;
+  }
 });
-
-const baseOddsMultiplier = 1 / (16 * Math.pow(5, (1 / 3)));
-
-/**
- * Return the intial odds ratio for a given property
- * @param {Number} newRent - The current rent for the property
- * @param {Number} oldRent - The old rent for the property
- * @param {JSON} property - Property for odds
- */
-function getBaseOdds(newRent, oldRent, pathLength, distance) {
-  var rentIncrease = (newRent - oldRent) / oldRent;
-  var adjustedPathLength = 1 / (pathLength + Math.pow(5, (-1 / 3)));
-  var finalValue = rentIncrease * adjustedPathLength * baseOddsMultiplier / distance;
-  return finalValue;
-}
 
 /**
  * Gets the position of the center of the element
