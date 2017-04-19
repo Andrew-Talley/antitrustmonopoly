@@ -249,14 +249,12 @@ app.controller('appController', function ($scope, $http) {
       })) {
       $scope.currentPlayer.oldMonopolies.push(monopoly);
       $scope.groups[monopoly.properties[0].propInd].isReady = false;
-      
-      if ($scope.settings.giveToBank) {
-        for (var prop in monopoly.properties) {
-          $scope.groups[prop.groupInd].properties[prop.propInd].isOwned = false;
-        }
-      } else if (!$scope.settings.governmentControl) {
-        var randomSeed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
-        for (var propInd in monopoly.properties) {
+
+      for (var propInd in monopoly.properties) {
+        if ($scope.settings.giveToBank) {
+          var prop = monopoly.properties[property];
+          $scope.groups[prop.groupInd].properties[prop.propInd].owned = false;
+        } else if (!$scope.settings.governmentControl) {
           const numPossiblePlayers = $scope.players.length - 1;
           var thisProp = monopoly.properties[propInd];
           var newPlayerIndex = randomSeed % (numPossiblePlayers);
@@ -267,14 +265,20 @@ app.controller('appController', function ($scope, $http) {
             console.error("The player is undefined");
             console.log(newPlayerIndex);
             console.log($scope.players);
-            $scope.groups[thisProp.groupInd].properties[thisProp.propInd].isOwned = false;
+            $scope.groups[thisProp.groupInd].properties[thisProp.propInd].owned = false;
           }
           $scope.addPropertyToSpecificPlayer($scope.players[newPlayerIndex], thisProp);
+          var fullProperty = $scope.groups[thisProp.groupInd].properties[thisProp.propInd];
+          fullProperty.rent = fullProperty.oldRent * 2; 
         }
       }
-      
-      delete $scope.currentPlayer.monopolies[monopInd];
+            
+      if ($scope.settings.checkEveryTurn) {
+        delete $scope.currentPlayer.monopolies[monopInd];
+      }
     }
+
+    console.log($scope.groups);
   }
 
   $scope.nextPlayer = function () {
@@ -290,7 +294,7 @@ app.controller('appController', function ($scope, $http) {
     }
     
     $scope.accountingFees();
-
+    $scope.setMonopolies();
     $scope.updateCanvas();
   }
 

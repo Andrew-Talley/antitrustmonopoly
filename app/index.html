@@ -229,7 +229,7 @@
           <div class="found">
             <h2>Regulators found your monopoly!</h2>
             <img src="./images/jail.jpg" />
-            <ul ng-if="!settings.checkEveryTurn">
+            <ul ng-if="settings.checkEveryTurn">
               <div ng-repeat="group in currentPlayer.oldMonopolies">
                 <li ng-repeat="prop in group.properties">{{groups[prop.groupInd].properties[prop.propInd].name}} is now owned by {{nameOfOwner(prop)}}</li>
               </div>
