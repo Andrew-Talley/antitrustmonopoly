@@ -368,8 +368,29 @@
 .player-monopolies .property-group {
     border: 1px solid #000;
     margin: 0px 3px;
+    position: relative;
     display: flex;
     flex-direction: row;
+}
+
+.player-monopolies.user-check .property-group {
+    padding-bottom: 1.5em;
+}
+
+.investigate {
+    position: absolute;
+    box-sizing: border-box;
+    height: 1.5em;
+    padding: .25em;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #c00;
+    border: solid #000;
+    border-width: 0px 1px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
 }
 
 .property-holder {
