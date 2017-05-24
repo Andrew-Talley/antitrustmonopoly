@@ -31,7 +31,7 @@ app.controller('appController', function ($scope, $http) {
   $scope.colors = ['#000', '#00f', '#0f0', '#f00', '#0ff', '#f0f', '#ff0'];
   $scope.rules = "default"
 
-  $http.get('http://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
+  $http.get('https://www.antitrustmonopoly.com/app/scripts/game-types.json').success(function (response) {
     $scope.allOptions = response;
   });
   $scope.addProp = function (index) {
